@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class MyActivity extends Activity {
 
     /*
-     * Comment add something more and more
+     * Replacing comment
      */
 
     @Override
