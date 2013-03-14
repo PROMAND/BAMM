@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
 
-public class MainActivity extends Activity {
+public class MainActivity extends SherlockActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
