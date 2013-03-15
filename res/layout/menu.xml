@@ -10,5 +10,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/menuExpandableListView"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="ORDER"
+            android:id="@+id/menuOrderButton"/>
 </LinearLayout>
 
