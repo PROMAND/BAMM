@@ -2,6 +2,7 @@ package pl.byd.promand.Team3.presentation.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
@@ -13,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends SherlockActivity {
+    private String restaurantOne;
+    private String restaurantTwo;
+    private String restaurantThree;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,33 +30,45 @@ public class MainActivity extends SherlockActivity {
         // it is expected that these values will be placed in a database
 
         List<String> groupTitleList = new ArrayList<String>();
-        groupTitleList.add(new String("Parent1"));
-        groupTitleList.add(new String("Parent2"));
-        groupTitleList.add(new String("Parent3"));
+
+        restaurantOne = "Restaurant One";
+        restaurantTwo = "Restaurant Two";
+        restaurantThree = "Restaurant Three";
+
+        groupTitleList.add(restaurantOne);
+        groupTitleList.add(restaurantTwo);
+        groupTitleList.add(restaurantThree);
+
 
         List<MenuItemDetailsBean> groupList = new ArrayList<MenuItemDetailsBean>();
-        MenuItemDetailsBean childsFromParent1 = new MenuItemDetailsBean();
-        childsFromParent1.add("Child1");
-        childsFromParent1.add("Child2");
-        childsFromParent1.add("Child3");
+        MenuItemDetailsBean restaurantDetails1 = new MenuItemDetailsBean();
+        restaurantDetails1.add("RestaurantDetails");
 
-        MenuItemDetailsBean childsFromParent2 = new MenuItemDetailsBean();
-        childsFromParent2.add("Child1");
-        childsFromParent2.add("Child2");
-        childsFromParent2.add("Child3");
+        MenuItemDetailsBean restaurantDetails2 = new MenuItemDetailsBean();
+        restaurantDetails2.add("RestaurantDetails");
 
-        MenuItemDetailsBean childsFromParent3 = new MenuItemDetailsBean();
-        childsFromParent3.add("Child1");
-        childsFromParent3.add("Child2");
-        childsFromParent3.add("Child3");
+        MenuItemDetailsBean restaurantDetails3 = new MenuItemDetailsBean();
+        restaurantDetails3.add("RestaurantDetails");
 
-        groupList.add(childsFromParent1);
-        groupList.add(childsFromParent2);
-        groupList.add(childsFromParent3);
+        groupList.add(restaurantDetails1);
+        groupList.add(restaurantDetails2);
+        groupList.add(restaurantDetails3);
 
         MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
 
         listView.setAdapter(adapter);
+
+
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
+                Intent moveToMenu = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(moveToMenu);
+
+                return false;
+            }
+        });
 
     }
 }
