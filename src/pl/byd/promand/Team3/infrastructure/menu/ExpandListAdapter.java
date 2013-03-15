@@ -3,6 +3,7 @@ package pl.byd.promand.Team3.infrastructure.menu;
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import pl.byd.promand.Team3.R;
 
@@ -58,15 +60,26 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 Log.d("layout", "food name click");
 
-                AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle(((TextView) v).getText());
-                alertDialog.setMessage("Some description here");
-                alertDialog.setButton("BACK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.menu_food_description);
+                dialog.setTitle(((TextView)v).getText());
+
+                // set the custom dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.TVmenuFoodDescription);
+                text.setText("Description of food here !");
+
+                text = (TextView) dialog.findViewById(R.id.TVmenuFoodIngredients);
+                text.setText("Ingredients of food here !");
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.BmenuFoodOK);
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
                     }
                 });
-                alertDialog.setIcon(R.drawable.abs__ab_share_pack_holo_dark);
-                alertDialog.show();
+
+                dialog.show();
             }
         });
         // TODO Auto-generated method stub
