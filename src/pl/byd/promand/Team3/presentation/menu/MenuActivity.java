@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
 
-public class MenuActivity extends Activity {
+public class MenuActivity extends SherlockActivity {
     /** Called when the activity is first created. */
     private ExpandListAdapter ExpAdapter;
     private ArrayList<ExpandListGroup> ExpListItems;
