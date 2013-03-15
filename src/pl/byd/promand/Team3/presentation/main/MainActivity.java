@@ -1,11 +1,13 @@
 package pl.byd.promand.Team3.presentation.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
+import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,8 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
+        //Intent intent = new Intent(this, MenuActivity.class);
+        //startActivity(intent);
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
 
         //TODO
