@@ -3,7 +3,56 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
+
         >
+    <TextView
+            android:id="@+id/orderTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/orderTextOnTop"
+            android:paddingBottom="10dp"
+            />
+
+    <EditText
+            android:id="@+id/orderEditTextName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/orderEditTextName"
+            android:inputType="text"
+            />
+    <EditText
+            android:id="@+id/orderEditTextPhoneNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/orderEditTextPhoneNumber"
+            android:inputType="phone"
+            />
+    <LinearLayout
+            android:id="@+id/orderConfirmationLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        <TextView
+                android:id="@+id/orderReviewTV"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/orderReview"
+                android:gravity="center_horizontal"
+                />
+    </LinearLayout>
+    <Button
+            android:id="@+id/orderConfirmButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/orderConfirmButton"
+            android:layout_gravity="bottom"
+            />
+
+
+
+
+
+
 
 </LinearLayout>
 

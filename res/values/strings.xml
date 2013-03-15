@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Team3</string>
+    <string name="orderTextOnTop">Please fill out the folloing form</string>
+    <string name="orderEditTextName">Name</string>
+    <string name="orderEditTextPhoneNumber">Phone number</string>
+    <string name="orderConfirmButton">Confirm</string>
+    <string name="orderReview">OrderReview</string>
 </resources>
