@@ -3,11 +3,13 @@ package pl.byd.promand.Team3.presentation.menu;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
+import pl.byd.promand.Team3.infrastructure.menu.ExpandListChild;
+import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 
 public class MenuActivity extends SherlockActivity {
     /** Called when the activity is first created. */
@@ -48,6 +50,6 @@ public class MenuActivity extends SherlockActivity {
         }
 
         return gru_list;
-    }
+   }
 
 }

@@ -1,9 +1,8 @@
-package pl.byd.promand.Team3.presentation.menu;
+package pl.byd.promand.Team3.infrastructure.menu;
 
 import java.util.ArrayList;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -11,15 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import pl.byd.promand.Team3.R;
 
 public class ExpandListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<ExpandListGroup> groups;
+
     public ExpandListAdapter(Context context, ArrayList<ExpandListGroup> groups) {
         this.context = context;
         this.groups = groups;
@@ -34,14 +32,13 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         ch.add(item);
         groups.get(index).setItems(ch);
     }
+
     public Object getChild(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         ArrayList<ExpandListChild> chList = groups.get(groupPosition).getItems();
         return chList.get(childPosition);
     }
 
     public long getChildId(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         return childPosition;
     }
 
@@ -59,10 +56,10 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("layout","food name click");
+                Log.d("layout", "food name click");
 
                 AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setTitle( ((TextView)v).getText());
+                alertDialog.setTitle(((TextView) v).getText());
                 alertDialog.setMessage("Some description here");
                 alertDialog.setButton("BACK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -85,17 +82,14 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     }
 
     public Object getGroup(int groupPosition) {
-        // TODO Auto-generated method stub
         return groups.get(groupPosition);
     }
 
     public int getGroupCount() {
-        // TODO Auto-generated method stub
         return groups.size();
     }
 
     public long getGroupId(int groupPosition) {
-        // TODO Auto-generated method stub
         return groupPosition;
     }
 
@@ -108,17 +102,14 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         }
         TextView tv = (TextView) view.findViewById(R.id.tvGroup);
         tv.setText(group.getName());
-        // TODO Auto-generated method stub
         return view;
     }
 
     public boolean hasStableIds() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     public boolean isChildSelectable(int arg0, int arg1) {
-        // TODO Auto-generated method stub
         return true;
     }
 
