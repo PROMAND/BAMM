@@ -2,6 +2,7 @@ package pl.byd.promand.Team3.presentation.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
@@ -56,6 +57,18 @@ public class MainActivity extends SherlockActivity {
         MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
 
         listView.setAdapter(adapter);
+
+
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
+                Intent moveToMenu = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(moveToMenu);
+
+                return false;
+            }
+        });
 
     }
 }
