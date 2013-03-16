@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -15,7 +16,6 @@ import pl.byd.promand.Team3.infrastructure.data.MenuCategory;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
-import pl.byd.promand.Team3.infrastructure.menu.ExpandListChild;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
@@ -40,7 +40,7 @@ public class MenuActivity extends SherlockActivity {
     public ArrayList<ExpandListGroup> SetStandardGroups() {
 
         ArrayList<ExpandListGroup> gru_list = new ArrayList<ExpandListGroup>();
-        ArrayList<ArrayList<ExpandListChild>> child_list = new ArrayList<ArrayList<ExpandListChild>>();
+        ArrayList<ArrayList<MenuItem>> child_list = new ArrayList<ArrayList<MenuItem>>();
 
         int categoryItr = 0;
         ArrayList<MenuCategory> catArray = myDao.getCategoryArray(1);
@@ -49,15 +49,13 @@ public class MenuActivity extends SherlockActivity {
             group.setName(catArray.get(categoryItr).categoryName);
             gru_list.add(group);
 
-            ArrayList<ExpandListChild> temp_child_list = new ArrayList<ExpandListChild>();
+            ArrayList<MenuItem> temp_child_list = new ArrayList<MenuItem>();
             int itemItr = 0;
-            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(1,catArray.get(categoryItr).categoryId);
+            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(1, catArray.get(categoryItr).categoryId);
             while(itemItr < itemArray.size()){
                 MenuItem tempItem = itemArray.get(itemItr);
-                ExpandListChild child = new ExpandListChild();
-                child.setName(tempItem.name);
-                child.setTag(null);
-                child.setId(tempItem.menuItemsId);
+                MenuItem child = new MenuItem(itemArray.get(itemItr));
+
                 temp_child_list.add(child);
                 itemItr++;
             }

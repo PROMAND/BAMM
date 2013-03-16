@@ -27,18 +27,18 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         this.groups = groups;
     }
 
-    public void addItem(ExpandListChild item, ExpandListGroup group) {
+    public void addItem(MenuItem item, ExpandListGroup group) {
         if (!groups.contains(group)) {
             groups.add(group);
         }
         int index = groups.indexOf(group);
-        ArrayList<ExpandListChild> ch = groups.get(index).getItems();
+        ArrayList<MenuItem> ch = groups.get(index).getItems();
         ch.add(item);
         groups.get(index).setItems(ch);
     }
 
     public Object getChild(int groupPosition, int childPosition) {
-        ArrayList<ExpandListChild> chList = groups.get(groupPosition).getItems();
+        ArrayList<MenuItem> chList = groups.get(groupPosition).getItems();
         return chList.get(childPosition);
     }
 
@@ -48,7 +48,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View view,
                              ViewGroup parent) {
-        final ExpandListChild child = (ExpandListChild) getChild(groupPosition, childPosition);
+        final MenuItem child = (MenuItem) getChild(groupPosition, childPosition);
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             view = infalInflater.inflate(R.layout.menu_list_child, null);
@@ -59,38 +59,42 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         tv.setText(child.getName());
         tv.setTag(child.getTag());
+
+        TextView itemDesc = (TextView) view.findViewById(R.id.TVmenuFoodDescription);
+        TextView itemIng = (TextView) view.findViewById(R.id.TVmenuFoodIngredients);
+
+        //Log.d("MyDebug","desc:" + child.getName());
+
+        itemDesc.setText(child.desc);
+        itemIng.setText(child.ingredients);
+
+        itemDesc.setVisibility(View.GONE);
+        itemIng.setVisibility(View.GONE);
+
+        //TODO: null pointer when activity is gone ?
+        final View copyView = view;
+
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("MyDebug", "food name click");
+                if(child.getTag() == false)
+                {
+                    copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.VISIBLE);
+                    child.setTag(true);
+                }else{
+                    copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.GONE);
+                    child.setTag(false);
+                }
 
-                MenuItem menuItem = MyDAO.getInstance().getMenuItem(child.getId());
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.menu_food_description);
-                dialog.setTitle(menuItem.name);
-
-                TextView text = (TextView) dialog.findViewById(R.id.TVmenuFoodDescription);
-                text.setText(menuItem.desc);
-
-                text = (TextView) dialog.findViewById(R.id.TVmenuFoodIngredients);
-                text.setText(menuItem.ingredients);
-
-                Button dialogButton = (Button) dialog.findViewById(R.id.BmenuFoodOK);
-                dialogButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
             }
         });
         return view;
     }
 
     public int getChildrenCount(int groupPosition) {
-        ArrayList<ExpandListChild> chList = groups.get(groupPosition).getItems();
+        ArrayList<MenuItem> chList = groups.get(groupPosition).getItems();
 
         return chList.size();
 

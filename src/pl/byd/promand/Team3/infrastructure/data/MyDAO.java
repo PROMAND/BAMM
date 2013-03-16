@@ -1,5 +1,6 @@
 package pl.byd.promand.Team3.infrastructure.data;
 
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
@@ -44,10 +45,13 @@ public class MyDAO {
             temp.ingredients = " - ingredients /n-ingredients /n-ingredients /n-ingredients /n-ingredients/n";
             temp.menuId = categoryId; //wtf ? rename it ?
             temp.menuItemsId = restaurantId * 1000 + categoryId * 100 + i;
+            temp.desc = "orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac nibh imperdiet metus convallis egestas. Nullam mi eros, tempor quis fermentum sed, fermentum nec augue.";
             temp.name = "Food Name " + i;
             temp.restaurantId = restaurantId;
             tempArray.add(temp);
         }
+
+        Log.d("MyDebug", "name:" + tempArray.get(1).getName());
         return tempArray;
     }
 
