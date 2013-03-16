@@ -14,6 +14,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.MenuItem;
+import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 
 public class ExpandListAdapter extends BaseExpandableListAdapter {
 
@@ -46,11 +48,13 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View view,
                              ViewGroup parent) {
-        ExpandListChild child = (ExpandListChild) getChild(groupPosition, childPosition);
+        final ExpandListChild child = (ExpandListChild) getChild(groupPosition, childPosition);
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             view = infalInflater.inflate(R.layout.menu_list_child, null);
         }
+
+
         TextView tv = (TextView) view.findViewById(R.id.textViewChild);
 
         tv.setText(child.getName());
@@ -58,18 +62,18 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("layout", "food name click");
+                Log.d("MyDebug", "food name click");
 
+                MenuItem menuItem = MyDAO.getInstance().getMenuItem(child.getId());
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.menu_food_description);
-                dialog.setTitle(((TextView)v).getText());
+                dialog.setTitle(menuItem.name);
 
-                // set the custom dialog components - text, image and button
                 TextView text = (TextView) dialog.findViewById(R.id.TVmenuFoodDescription);
-                text.setText("Description of food here !");
+                text.setText(menuItem.desc);
 
                 text = (TextView) dialog.findViewById(R.id.TVmenuFoodIngredients);
-                text.setText("Ingredients of food here !");
+                text.setText(menuItem.ingredients);
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.BmenuFoodOK);
                 dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -82,12 +86,10 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                 dialog.show();
             }
         });
-        // TODO Auto-generated method stub
         return view;
     }
 
     public int getChildrenCount(int groupPosition) {
-        // TODO Auto-generated method stub
         ArrayList<ExpandListChild> chList = groups.get(groupPosition).getItems();
 
         return chList.size();

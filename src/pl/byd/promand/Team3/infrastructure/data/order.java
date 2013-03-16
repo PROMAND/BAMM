@@ -6,10 +6,13 @@ import android.util.Pair;
 import java.util.ArrayList;
 
 public class Order {
+    //called from MyDao
+    public Order(int resId){
+        reservationId = resId;
+    }
 
     public Order(){
-        //ToDo reservationId generated from DAO class
-        reservationId = 1;
+        reservationId = MyDAO.getInstance().getNewReservationId();
     }
 
     public void addItemToOrder(int menuItemId) {setQuantity(menuItemId,1);}
@@ -23,8 +26,9 @@ public class Order {
 
     public int getQuantity(int menuItemId) {
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).first == menuItemId)
+            if (items.get(i).first == menuItemId){
                 return items.get(i).second;
+            }
         }
         return 0;
     }
@@ -48,6 +52,7 @@ public class Order {
                 return true;
             }
         }
+        setQuantity(menuItemId,1);
         return false;
     }
 
