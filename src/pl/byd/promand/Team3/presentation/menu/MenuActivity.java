@@ -20,11 +20,14 @@ import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
 public class MenuActivity extends SherlockActivity {
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     private ExpandListAdapter ExpAdapter;
     private ArrayList<ExpandListGroup> ExpListItems;
     private ExpandableListView ExpandList;
     private MyDAO myDao;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class MenuActivity extends SherlockActivity {
 
         int categoryItr = 0;
         ArrayList<MenuCategory> catArray = myDao.getCategoryArray(1);
-        while(categoryItr < catArray.size()){
+        while (categoryItr < catArray.size()) {
             ExpandListGroup group = new ExpandListGroup();
             group.setName(catArray.get(categoryItr).categoryName);
             gru_list.add(group);
@@ -52,7 +55,7 @@ public class MenuActivity extends SherlockActivity {
             ArrayList<MenuItem> temp_child_list = new ArrayList<MenuItem>();
             int itemItr = 0;
             ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(1, catArray.get(categoryItr).categoryId);
-            while(itemItr < itemArray.size()){
+            while (itemItr < itemArray.size()) {
                 MenuItem tempItem = itemArray.get(itemItr);
                 MenuItem child = new MenuItem(itemArray.get(itemItr));
 
@@ -75,6 +78,6 @@ public class MenuActivity extends SherlockActivity {
         });
 
         return gru_list;
-   }
+    }
 
 }

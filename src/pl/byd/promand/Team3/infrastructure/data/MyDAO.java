@@ -1,23 +1,41 @@
 package pl.byd.promand.Team3.infrastructure.data;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
 
 public class MyDAO {
     /**********************************/
     /* Reservation Data               */
     /**********************************/
-    public Order getNewOrder(){
-        return new Order(getNewReservationId());
+    public Order getNewOrder(int restaurantId){
+        return new Order(getNewReservationId(),restaurantId);
     }
 
     public int getNewReservationId(){
                return ++currentReservationId;
     }
 
-    private int currentReservationId;
+    public Order getOrder(int restaurantId){
+         for(int i=0;i < orderArray.size();i++){
+            if( orderArray.get(i).getRestaurantId() == restaurantId){
+                return orderArray.get(i);
+            }
+         }
+        return getNewOrder(restaurantId);
+    }
+
+    public int addToOrder(int restaurantId,int itemId){
+        Order order = getOrder(restaurantId);
+        if (order == null)
+            order = getNewOrder(restaurantId);
+
+        order.addQuantity(itemId);
+        Log.d("MyDebug","Addtoorder end dao "+ order.getQuantity(itemId));
+        return order.getQuantity(itemId);
+    }
+
+    private ArrayList<Order> orderArray = new ArrayList<Order>();
+    private int currentReservationId=0;
 
     /**********************************/
     /* menuItem data                  */

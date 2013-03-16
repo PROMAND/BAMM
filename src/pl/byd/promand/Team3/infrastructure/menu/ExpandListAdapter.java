@@ -2,20 +2,14 @@ package pl.byd.promand.Team3.infrastructure.menu;
 
 import java.util.ArrayList;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
-import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 
 public class ExpandListAdapter extends BaseExpandableListAdapter {
 
@@ -58,7 +52,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         TextView tv = (TextView) view.findViewById(R.id.textViewChild);
 
         tv.setText(child.getName());
-        tv.setTag(child.getTag());
+        tv.setTag(child.getId());
 
         TextView itemDesc = (TextView) view.findViewById(R.id.TVmenuFoodDescription);
         TextView itemIng = (TextView) view.findViewById(R.id.TVmenuFoodIngredients);
@@ -77,15 +71,15 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(child.getTag() == false)
+                if(child.getCollapsed() == true)
                 {
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.VISIBLE);
-                    child.setTag(true);
+                    child.setCollapsed(false);
                 }else{
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.GONE);
-                    child.setTag(false);
+                    child.setCollapsed(true);
                 }
 
             }
