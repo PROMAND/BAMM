@@ -28,6 +28,54 @@
             android:inputType="phone"
             />
     <LinearLayout
+            android:id="@+id/sitsSelectionLayot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5"
+
+            >
+        <TextView
+                android:id="@+id/orderTextViewSits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/orderSits"
+                />
+        <EditText
+                android:id="@+id/orderEditTextSits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/orderEditTextPhoneNumber"
+                android:inputType="numberDecimal"
+                android:layout_weight="1"
+                />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/dateAndTimeLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+        <Button
+                android:id="@+id/btnDatePicker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pick date"
+        />
+        <Button
+                android:id="@+id/btnTimePirkcer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pick time"
+                />
+
+
+    </LinearLayout>
+    <LinearLayout
             android:id="@+id/orderConfirmationLayout"
             android:layout_width="fill_parent"
             android:layout_height="0dp"

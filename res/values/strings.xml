@@ -6,4 +6,5 @@
     <string name="orderEditTextPhoneNumber">Phone number</string>
     <string name="orderConfirmButton">Confirm</string>
     <string name="orderReview">OrderReview</string>
+    <string name="orderSits">Number of sits</string>
 </resources>

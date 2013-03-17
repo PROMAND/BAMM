@@ -18,19 +18,39 @@ public class OrderActivity extends SherlockActivity {
     private EditText nameET;
     private EditText phoneNumberET;
 
-    private Button button;
+    private Button confirmButton;
+    private Button datePickButton;
+    private Button timePickButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
-        button = (Button)findViewById(R.id.orderConfirmButton);
+        confirmButton = (Button)findViewById(R.id.orderConfirmButton);
+        datePickButton = (Button)findViewById(R.id.btnDatePicker);
+        timePickButton = (Button)findViewById(R.id.btnTimePirkcer);
+
         nameET = (EditText)findViewById(R.id.orderEditTextName);
         phoneNumberET = (EditText)findViewById(R.id.orderEditTextPhoneNumber);
 
         //order = new OrderBean();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        datePickButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        timePickButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 name = nameET.getText().toString();
