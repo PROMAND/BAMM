@@ -94,4 +94,6 @@ public class MyDAO {
         currentReservationId = 0; //ToDo import from DB
         currentMenuItemId = 0;
     }
+
+    public String file;
 }
