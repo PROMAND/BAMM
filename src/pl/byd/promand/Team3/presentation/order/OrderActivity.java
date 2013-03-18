@@ -28,7 +28,7 @@ public class OrderActivity extends SherlockActivity {
         nameET = (EditText)findViewById(R.id.orderEditTextName);
         phoneNumberET = (EditText)findViewById(R.id.orderEditTextPhoneNumber);
 
-        //order = new OrderBean();
+        //Order = new OrderBean();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

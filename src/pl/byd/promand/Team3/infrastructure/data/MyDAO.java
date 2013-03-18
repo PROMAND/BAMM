@@ -7,6 +7,7 @@ public class MyDAO {
     /**********************************/
     /* Reservation Data               */
     /**********************************/
+
     public Order getNewOrder(int restaurantId){
         return new Order(getNewReservationId(),restaurantId);
     }
