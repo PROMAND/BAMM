@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Order {
     //called from MyDao
-    public Order(int reservationId,int restaurantId){
+    public Order(int reservationId, int restaurantId){
         this.reservationId = reservationId;
         this.restaurantId  = restaurantId;
     }

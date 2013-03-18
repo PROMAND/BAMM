@@ -9,6 +9,8 @@ import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,23 @@ public class MainActivity extends SherlockActivity {
     private String restaurantOne;
     private String restaurantTwo;
     private String restaurantThree;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cart:
+
+                break;
+            case R.id.location:
+
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,4 +90,11 @@ public class MainActivity extends SherlockActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getSupportMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
 }
