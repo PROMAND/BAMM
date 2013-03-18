@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.MenuCategory;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
@@ -27,6 +28,23 @@ public class MenuActivity extends SherlockActivity {
     private ArrayList<ExpandListGroup> ExpListItems;
     private ExpandableListView ExpandList;
     private MyDAO myDao;
+
+    @Override
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cart:
+
+                break;
+            case R.id.location:
+
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +96,12 @@ public class MenuActivity extends SherlockActivity {
         });
 
         return gru_list;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getSupportMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
     }
 
 }
