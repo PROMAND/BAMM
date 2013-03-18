@@ -70,11 +70,11 @@ public class OrderActivity extends SherlockActivity {
                 name = nameET.getText().toString();
                 phoneNumber = phoneNumberET.getText().toString();
 
-                String mailText = name + "" + phoneNumber;
+                String mailText = "Name: " + name + "Phone: " + phoneNumber + " Order date: " + textViewDate.getText() + " Order time: " + textViewTime.getText();
 
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, "tosha123@inbox.lv");
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"tosha123@inbox.lv"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Table Reservation");
                 intent.putExtra(Intent.EXTRA_TEXT, mailText);
 
