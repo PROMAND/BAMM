@@ -28,7 +28,6 @@
             android:inputType="phone"
             />
     <LinearLayout
-            android:id="@+id/sitsSelectionLayot"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -46,7 +45,6 @@
                 android:id="@+id/orderEditTextSits"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/orderEditTextPhoneNumber"
                 android:inputType="numberDecimal"
                 android:layout_weight="1"
                 />
@@ -63,30 +61,56 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pick date"
+                android:text="@string/orderPickDateBtn"
         />
         <Button
                 android:id="@+id/btnTimePirkcer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pick time"
+                android:text="@string/orderPickTimeBtn"
                 />
-
 
     </LinearLayout>
     <LinearLayout
             android:id="@+id/orderConfirmationLayout"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
         <TextView
-                android:id="@+id/orderReviewTV"
-                android:layout_width="fill_parent"
+                android:id="@+id/orderDateTV"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/orderReview"
-                android:gravity="center_horizontal"
+                android:text="@string/orderDate"
                 />
+        <TextView
+                android:id="@+id/orderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/orderConfirmationLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        <TextView
+                android:id="@+id/orderTimeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orderTime"
+                />
+        <TextView
+                android:id="@+id/orderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+
     </LinearLayout>
     <Button
             android:id="@+id/orderConfirmButton"
@@ -95,12 +119,6 @@
             android:text="@string/orderConfirmButton"
             android:layout_gravity="bottom"
             />
-
-
-
-
-
-
 
 </LinearLayout>
 

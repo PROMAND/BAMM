@@ -7,4 +7,9 @@
     <string name="orderConfirmButton">Confirm</string>
     <string name="orderReview">OrderReview</string>
     <string name="orderSits">Number of sits</string>
+    <string name="orderPickTimeBtn">Pick Time</string>
+    <string name="orderPickDateBtn">Pick Date</string>
+    <string name="orderTime">Order time:</string>
+    <string name="orderDate">Order date:</string>
+
 </resources>
