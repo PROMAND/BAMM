@@ -16,4 +16,3 @@
             android:id="@+id/expandableListView"
             android:layout_gravity="center"/>
 </LinearLayout>
-

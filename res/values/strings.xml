@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Team3</string>
+    <string name="app_name">BAMM</string>
     <string name="orderTextOnTop">Please fill out the folloing form</string>
     <string name="orderEditTextName">Name</string>
     <string name="orderEditTextPhoneNumber">Phone number</string>
     <string name="orderConfirmButton">Confirm</string>
     <string name="orderReview">OrderReview</string>
+    <string name="orderSits">Number of sits</string>
+    <string name="orderPickTimeBtn">Pick Time</string>
+    <string name="orderPickDateBtn">Pick Date</string>
+    <string name="orderTime">Order time:</string>
+    <string name="orderDate">Order date:</string>
+
 </resources>
