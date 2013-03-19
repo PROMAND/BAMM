@@ -96,5 +96,19 @@ public class MyDAO {
         currentMenuItemId = 0;
     }
 
+    public void downloadRestauration(){
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("restaurant");
+    }
+
+    public ArrayList<Restaurant> getRestaurantArray(){
+        if(!restaurantArray.isEmpty())
+            return restaurantArray;
+
+        return null;
+    }
+
+    public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
+
     public String file;
 }

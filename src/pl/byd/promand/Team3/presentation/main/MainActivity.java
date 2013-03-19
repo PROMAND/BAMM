@@ -2,10 +2,17 @@ package pl.byd.promand.Team3.presentation.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.DownloadJasonFile;
+import pl.byd.promand.Team3.infrastructure.data.GlobalState;
+import pl.byd.promand.Team3.infrastructure.data.MyDAO;
+import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
@@ -49,36 +56,13 @@ public class MainActivity extends SherlockActivity {
         //TODO
         // it is expected that these values will be placed in a database
 
-        List<String> groupTitleList = new ArrayList<String>();
-
-        restaurantOne = "Restaurant One";
-        restaurantTwo = "Restaurant Two";
-        restaurantThree = "Restaurant Three";
-
-        groupTitleList.add(restaurantOne);
-        groupTitleList.add(restaurantTwo);
-        groupTitleList.add(restaurantThree);
-
-
-        List<MenuItemDetailsBean> groupList = new ArrayList<MenuItemDetailsBean>();
-        MenuItemDetailsBean restaurantDetails1 = new MenuItemDetailsBean();
-        restaurantDetails1.add("RestaurantDetails");
-
-        MenuItemDetailsBean restaurantDetails2 = new MenuItemDetailsBean();
-        restaurantDetails2.add("RestaurantDetails");
-
-        MenuItemDetailsBean restaurantDetails3 = new MenuItemDetailsBean();
-        restaurantDetails3.add("RestaurantDetails");
-
-        groupList.add(restaurantDetails1);
-        groupList.add(restaurantDetails2);
-        groupList.add(restaurantDetails3);
-
-        MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
-
-        listView.setAdapter(adapter);
-
-
+        GlobalState.getInstance().mainHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.getData().getString("type").compareTo("restaurant") == 0)
+                    showListView();
+            }
+        };
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -89,6 +73,30 @@ public class MainActivity extends SherlockActivity {
                 return false;
             }
         });
+
+        MyDAO.getInstance().downloadRestauration();
+
+
+    }
+
+    private void showListView(){
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
+        List<String> groupTitleList = new ArrayList<String>();
+
+        List<MenuItemDetailsBean> groupList = new ArrayList<MenuItemDetailsBean>();
+        ArrayList <Restaurant> resArray = MyDAO.getInstance().getRestaurantArray();
+
+        for(int i = 0;i < resArray.size();i++){
+            groupTitleList.add(resArray.get(i).Name);
+            MenuItemDetailsBean restaurantDetails1 = new MenuItemDetailsBean();
+            restaurantDetails1.add(resArray.get(i).Desc_short);
+            groupList.add(restaurantDetails1);
+        }
+
+        MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
+
+
+        listView.setAdapter(adapter);
 
     }
 
