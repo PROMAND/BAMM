@@ -108,6 +108,15 @@ public class MyDAO {
         return null;
     }
 
+    public Restaurant getRestaurant(int Restaurant_ID){
+        for(int i=0;i < restaurantArray.size();i++){
+            if(restaurantArray.get(i).Restaurant_ID == Restaurant_ID){
+                return  restaurantArray.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
 
     public String file;

@@ -17,6 +17,7 @@ import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.MenuCategory;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
+import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
@@ -32,8 +33,7 @@ public class MenuActivity extends SherlockActivity {
     private MyDAO myDao;
 
     //temporary
-    private String coordinate1;
-    private String coordinate2;
+    private Restaurant restaurant;
 
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
@@ -49,10 +49,8 @@ public class MenuActivity extends SherlockActivity {
                 startActivity(order);
                 return true;
             case R.id.location:
-                coordinate1 = "53.127256";
-                coordinate2 = "17.993782";
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
+                        Uri.parse("http://maps.google.com/maps?q=" + restaurant.Localization_x + "," + restaurant.Localization_y));
                 startActivity(intent);
 
                 break;
@@ -72,6 +70,9 @@ public class MenuActivity extends SherlockActivity {
         ExpListItems = SetStandardGroups();
         ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
         ExpandList.setAdapter(ExpAdapter);
+
+        restaurant = MyDAO.getInstance().getRestaurant(1) ; //ToDo: this "1" must be from MainActivity
+
     }
 
     public ArrayList<ExpandListGroup> SetStandardGroups() {

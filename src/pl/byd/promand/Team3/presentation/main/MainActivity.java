@@ -75,6 +75,7 @@ public class MainActivity extends SherlockActivity {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
                 Intent moveToMenu = new Intent(getApplicationContext(), MenuActivity.class);
+
                 startActivity(moveToMenu);
 
                 return false;
