@@ -3,8 +3,8 @@ package pl.byd.promand.Team3.infrastructure.data;
 public class Restaurant {
     public int Restaurant_ID;
     public String Name;
-    public double Localization_x;
-    public double Localization_y;
+    public String Localization_x;
+    public String Localization_y;
     public int Sits_max;
     public int Sits_current;
     public String Path_to_img;
