@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import pl.byd.promand.Team3.R;
 
 public class OrderActivity extends SherlockActivity {
@@ -32,6 +34,23 @@ public class OrderActivity extends SherlockActivity {
     private Integer day;
     private Integer hours;
     private Integer minutes;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.cart:
+
+                break;
+            case R.id.location:
+
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +164,12 @@ public class OrderActivity extends SherlockActivity {
 
     public void setMinutes(Integer minutes) {
         this.minutes = minutes;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getSupportMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
     }
 
 }
