@@ -6,6 +6,7 @@ import android.util.Log;
 
 public class GlobalState extends Application{
     public Handler mainHandler;
+    public Handler menuHandler;
 
     public void onCreate(){
         super.onCreate();

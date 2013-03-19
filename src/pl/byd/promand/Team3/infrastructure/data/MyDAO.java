@@ -56,21 +56,20 @@ public class MyDAO {
         return tempArray;
     }
 
-    public ArrayList<MenuItem> getMenuItemArray(int restaurantId,int categoryId){
+    /*public ArrayList<MenuItem> getMenuItemArray(int restaurantId,int categoryId){
         ArrayList<MenuItem> tempArray = new ArrayList<MenuItem>();
         //todo db support
         for(int i =0;i < 20;i++){
             MenuItem temp = new MenuItem();
             temp.ingredients = " - ingredients /n-ingredients /n-ingredients /n-ingredients /n-ingredients/n";
             temp.menuId = categoryId; //wtf ? rename it ?
-            temp.menuItemsId = restaurantId * 1000 + categoryId * 100 + i;
-            temp.desc = "orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac nibh imperdiet metus convallis egestas. Nullam mi eros, tempor quis fermentum sed, fermentum nec augue.";
+            temp.menuItemId = restaurantId * 1000 + categoryId * 100 + i;
+            temp.description = "orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac nibh imperdiet metus convallis egestas. Nullam mi eros, tempor quis fermentum sed, fermentum nec augue.";
             temp.name = "Food Name " + i;
             temp.restaurantId = restaurantId;
             tempArray.add(temp);
         }
 
-        Log.d("MyDebug", "name:" + tempArray.get(1).getName());
         return tempArray;
     }
 
@@ -78,12 +77,12 @@ public class MyDAO {
         MenuItem temp = new MenuItem();
         temp.ingredients = " - ingredients /n-ingredients /n-ingredients /n-ingredients /n-ingredients/n";
         temp.menuId = 1; //wtf ? rename it ?
-        temp.menuItemsId = itemId;
+        temp.menuItemId = itemId;
         temp.name = "Food Name";
         temp.restaurantId = 1;
-        temp.desc = "orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac nibh imperdiet metus convallis egestas. Nullam mi eros, tempor quis fermentum sed, fermentum nec augue.";
+        temp.description = "orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac nibh imperdiet metus convallis egestas. Nullam mi eros, tempor quis fermentum sed, fermentum nec augue.";
         return temp;
-    }
+    }   */
 
     private static MyDAO ourInstance = new MyDAO();
 
@@ -94,6 +93,11 @@ public class MyDAO {
     private MyDAO() {
         currentReservationId = 0; //ToDo import from DB
         currentMenuItemId = 0;
+    }
+
+    public void downloadMenuItems(Integer id){
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("menu_item","restaurantId",id.toString());
     }
 
     public void downloadRestaurant(){
@@ -117,7 +121,42 @@ public class MyDAO {
         return null;
     }
 
+    public ArrayList<MenuItem> getMenuItemArray(int restaurantId){
+        for(int i = 0;i < menuItem.size();i++){
+            if(menuItem.get(i).get(0).restaurantId == restaurantId){
+                return menuItem.get(i);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<MenuItem> getMenuItemArray(int restaurantId, int categoryId){
+        ArrayList<MenuItem> menuItemArray = getMenuItemArray(restaurantId);
+        ArrayList<MenuItem> tempMenuItemArray = new ArrayList<MenuItem>();
+
+        for(int i = 0;i < menuItemArray.size();i++){
+            if(menuItemArray.get(i).menuId == categoryId){
+                tempMenuItemArray.add(menuItemArray.get(i));
+            }
+        }
+        return tempMenuItemArray;
+    }
+
+    public void setMenuItemArray(ArrayList<MenuItem> itemArray){
+        if(itemArray == null || itemArray.isEmpty())
+            return;
+
+        int restaurantId = itemArray.get(0).restaurantId;
+        for(int i = 0;i < menuItem.size();i++){
+            if(menuItem.get(i).get(0).restaurantId == restaurantId){
+                menuItem.remove(i);
+            }
+        }
+        menuItem.add(itemArray);
+    }
+
     public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
+    public ArrayList<ArrayList<MenuItem>> menuItem = new ArrayList<ArrayList<MenuItem>>();
 
     public String file;
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +16,7 @@ import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import pl.byd.promand.Team3.R;
-import pl.byd.promand.Team3.infrastructure.data.MenuCategory;
-import pl.byd.promand.Team3.infrastructure.data.MenuItem;
-import pl.byd.promand.Team3.infrastructure.data.MyDAO;
-import pl.byd.promand.Team3.infrastructure.data.Restaurant;
+import pl.byd.promand.Team3.infrastructure.data.*;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
@@ -63,15 +62,23 @@ public class MenuActivity extends SherlockActivity {
         getSupportActionBar().setTitle("Menu");
         myDao = MyDAO.getInstance();
 
-        ExpandList = (ExpandableListView) findViewById(R.id.menuExpandableListView);
-        ExpListItems = SetStandardGroups();
-        ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
-        ExpandList.setAdapter(ExpAdapter);
 
         int resId = getIntent().getExtras().getInt("RestaurantId");
-        Log.d("MyDebug","Udało sie przekazac" + resId);
-        restaurant = MyDAO.getInstance().getRestaurant(resId) ; //ToDo: this "1" must be from MainActivity
+        restaurant = MyDAO.getInstance().getRestaurant(resId);
+        MyDAO.getInstance().downloadMenuItems(resId);
 
+        GlobalState.getInstance().menuHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.getData().getString("type").compareTo("menu_item") == 0) {
+                    ExpandList = (ExpandableListView) findViewById(R.id.menuExpandableListView);
+                    ExpListItems = SetStandardGroups();
+                    ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
+                    ExpandList.setAdapter(ExpAdapter);
+                    Log.d("MyDebug","menu_item Handler");
+                }
+            }
+        };
     }
 
     public ArrayList<ExpandListGroup> SetStandardGroups() {
@@ -88,7 +95,7 @@ public class MenuActivity extends SherlockActivity {
 
             ArrayList<MenuItem> temp_child_list = new ArrayList<MenuItem>();
             int itemItr = 0;
-            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(1, catArray.get(categoryItr).categoryId);
+            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(restaurant.Restaurant_ID, catArray.get(categoryItr).categoryId);
             while (itemItr < itemArray.size()) {
                 MenuItem tempItem = itemArray.get(itemItr);
                 MenuItem child = new MenuItem(itemArray.get(itemItr));
@@ -115,8 +122,8 @@ public class MenuActivity extends SherlockActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getSupportMenuInflater().inflate(R.menu.menu_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 

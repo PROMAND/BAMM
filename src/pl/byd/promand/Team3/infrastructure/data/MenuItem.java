@@ -2,14 +2,15 @@ package pl.byd.promand.Team3.infrastructure.data;
 
 public class MenuItem{
 
-    public int menuItemsId;
-    public int restaurantId;
-    public String ingredients;
-    public float price;
+    public int menuItemId;
     public int menuId;
+    public int restaurantId;
+    public String description;
+    public double price;
+    public String ingredients;
     public String name;
-    public String desc;
-    private boolean collapsed =true;
+    public String path_to_img;
+    private boolean collapsed = true;
     private int id;
 
     public String getName() {
@@ -33,13 +34,13 @@ public class MenuItem{
 
     //TODO: wtf
     public MenuItem(MenuItem temp){
-        this.menuItemsId = temp.menuItemsId;
+        this.menuItemId = temp.menuItemId;
         this.restaurantId = temp.restaurantId;
         this.ingredients = temp.ingredients;
         this.price = temp.price;
         this.menuId = temp.menuId;
         this.name = temp.name;
-        this.desc = temp.desc;
+        this.description = temp.description;
         this.id = temp.id;
         this.collapsed = temp.collapsed;
     }

@@ -59,7 +59,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         //Log.d("MyDebug","desc:" + child.getName());
 
-        itemDesc.setText(child.desc);
+        itemDesc.setText(child.description);
         itemIng.setText(child.ingredients);
 
         itemDesc.setVisibility(View.GONE);
