@@ -1,6 +1,7 @@
 package pl.byd.promand.Team3.presentation.main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,10 +24,15 @@ import pl.byd.promand.Team3.presentation.order.OrderActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MainActivity extends SherlockActivity {
     private String restaurantOne;
     private String restaurantTwo;
     private String restaurantThree;
+
+    private String coordinate1;
+    private String coordinate2;
 
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
@@ -37,7 +43,11 @@ public class MainActivity extends SherlockActivity {
                 startActivity(order);
                 return true;
             case R.id.location:
-
+                coordinate1 = "53.127256";
+                coordinate2 = "17.993782";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
+                startActivity(intent);
                 break;
             default:
                 break;
