@@ -11,6 +11,7 @@ import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +22,19 @@ public class MainActivity extends SherlockActivity {
     private String restaurantThree;
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cart:
-
-                break;
+                Intent order = new Intent(this, OrderActivity.class);
+                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(order);
+                return true;
             case R.id.location:
 
                 break;
-
             default:
                 break;
         }
-
         return true;
     }
 

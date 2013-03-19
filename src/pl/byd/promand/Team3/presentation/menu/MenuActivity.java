@@ -18,6 +18,7 @@ import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
+import pl.byd.promand.Team3.presentation.main.MainActivity;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
 public class MenuActivity extends SherlockActivity {
@@ -32,17 +33,22 @@ public class MenuActivity extends SherlockActivity {
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent home = new Intent(this, MainActivity.class);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(home);
+                return true;
             case R.id.cart:
-
-                break;
+                Intent order = new Intent(this, OrderActivity.class);
+                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(order);
+                return true;
             case R.id.location:
 
                 break;
-
             default:
                 break;
         }
-
         return true;
     }
 

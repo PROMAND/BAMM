@@ -10,6 +10,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.presentation.main.MainActivity;
 
 public class OrderActivity extends SherlockActivity {
     private String name;
@@ -36,19 +37,24 @@ public class OrderActivity extends SherlockActivity {
     private Integer minutes;
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent home = new Intent(this, MainActivity.class);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(home);
+                return true;
             case R.id.cart:
-
-                break;
+                Intent order = new Intent(this, OrderActivity.class);
+                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(order);
+                return true;
             case R.id.location:
 
                 break;
-
             default:
                 break;
         }
-
         return true;
     }
 
