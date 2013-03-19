@@ -9,8 +9,9 @@ import android.view.View;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.MyDAO;
+import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
 
 public class OrderActivity extends SherlockActivity {
@@ -44,9 +45,8 @@ public class OrderActivity extends SherlockActivity {
 
     private final int TEXT_SIZE = 20;
 
-    //temporary
-    private String coordinate1;
-    private String coordinate2;
+    private MyDAO myDAO;
+    private Restaurant restaurant;
 
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
@@ -57,10 +57,12 @@ public class OrderActivity extends SherlockActivity {
                 startActivity(home);
                 return true;
             case R.id.location:
-                coordinate1 = "53.127256";
-                coordinate2 = "17.993782";
+                myDAO = MyDAO.getInstance();
+                //ToDo hardcoded restaurant id
+                restaurant = myDAO.getRestaurant(1);
+
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
+                        Uri.parse("http://maps.google.com/maps?q=" + restaurant.Localization_x + "," + restaurant.Localization_y));
                 startActivity(intent);
                 break;
             default:
@@ -94,8 +96,6 @@ public class OrderActivity extends SherlockActivity {
         numOfSitsTV.setTextSize(TEXT_SIZE);
         fillFormTV.setTextSize(TEXT_SIZE);
         selectSitsTV.setTextSize(TEXT_SIZE);
-
-
 
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override

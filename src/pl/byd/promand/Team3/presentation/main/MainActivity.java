@@ -26,9 +26,6 @@ import java.util.List;
 
 
 public class MainActivity extends SherlockActivity {
-    private String restaurantOne;
-    private String restaurantTwo;
-    private String restaurantThree;
 
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
