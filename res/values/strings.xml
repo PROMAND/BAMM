@@ -13,6 +13,9 @@
     <string name="orderDate">Order date:</string>
     <string name="minus">minus</string>
     <string name="plus">plus</string>
+    <string name="info">About</string>
+    <string name="order">Order</string>
+    <string name="maps">Location</string>
 
 
 </resources>

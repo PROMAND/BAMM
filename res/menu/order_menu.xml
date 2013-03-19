@@ -7,6 +7,7 @@
             android:orderInCategory="3"
             android:showAsAction="always"
             android:icon="@drawable/maps"
+            android:title="@string/maps"
             />
 
 </menu>
