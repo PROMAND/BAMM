@@ -5,6 +5,7 @@ import java.io.DataOutput;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,10 @@ public class MenuActivity extends SherlockActivity {
     private ExpandableListView ExpandList;
     private MyDAO myDao;
 
+    //temporary
+    private String coordinate1;
+    private String coordinate2;
+
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
@@ -44,6 +49,11 @@ public class MenuActivity extends SherlockActivity {
                 startActivity(order);
                 return true;
             case R.id.location:
+                coordinate1 = "53.127256";
+                coordinate2 = "17.993782";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
+                startActivity(intent);
 
                 break;
             default:
