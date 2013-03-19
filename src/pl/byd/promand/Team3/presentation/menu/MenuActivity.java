@@ -24,15 +24,10 @@ import pl.byd.promand.Team3.presentation.main.MainActivity;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
 public class MenuActivity extends SherlockActivity {
-    /**
-     * Called when the activity is first created.
-     */
     private ExpandListAdapter ExpAdapter;
     private ArrayList<ExpandListGroup> ExpListItems;
     private ExpandableListView ExpandList;
     private MyDAO myDao;
-
-    //temporary
     private Restaurant restaurant;
 
     @Override
@@ -71,7 +66,9 @@ public class MenuActivity extends SherlockActivity {
         ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
         ExpandList.setAdapter(ExpAdapter);
 
-        restaurant = MyDAO.getInstance().getRestaurant(1) ; //ToDo: this "1" must be from MainActivity
+        int resId = getIntent().getExtras().getInt("RestaurantId");
+        Log.d("MyDebug","Udało sie przekazac" + resId);
+        restaurant = MyDAO.getInstance().getRestaurant(resId) ; //ToDo: this "1" must be from MainActivity
 
     }
 

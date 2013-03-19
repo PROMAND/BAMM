@@ -1,12 +1,17 @@
 package pl.byd.promand.Team3.infrastructure.main;
 
 import android.content.Context;
+import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.Restaurant;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainExpandableListAdapter extends BaseExpandableListAdapter {
@@ -14,12 +19,16 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> groupTitleList;
     private List<MenuItemDetailsBean> groupList;
     private Context context;
+    private ArrayList<Pair<Integer,Integer>> resIdGroupList;
 
-    public MainExpandableListAdapter(List<String> groupTitleList, List<MenuItemDetailsBean> groupList, Context context) {
+    public MainExpandableListAdapter(List<String> groupTitleList, List<MenuItemDetailsBean> groupList, Context context,
+                                     ArrayList<Pair<Integer,Integer>> resIdGroupList) {
         this.groupTitleList = groupTitleList;
         this.groupList = groupList;
         this.context = context;
+        this.resIdGroupList = resIdGroupList;
     }
+
 
     @Override
     public int getGroupCount() {
@@ -56,6 +65,15 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    public Integer getIdGroup(Integer id){
+        for(int i=0;i < resIdGroupList.size();i++){
+            if(resIdGroupList.get(i).first == id){
+                return resIdGroupList.get(i).second;
+            }
+        }
+        Log.d("MyDebug","Nie zgadzaja sie id w mainExpandableListAdapter");
+        return null;
+    }
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String group = (String) getGroup(groupPosition);
@@ -83,6 +101,8 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView textView = (TextView) convertView.findViewById(R.id.textViewItemDetails);
         textView.setText(child);
+        convertView.setTag(R.id.TAG_VIEW,getIdGroup(groupPosition));
+
 
         return convertView;
     }

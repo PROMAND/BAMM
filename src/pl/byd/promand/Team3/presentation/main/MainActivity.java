@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,9 +30,6 @@ public class MainActivity extends SherlockActivity {
     private String restaurantTwo;
     private String restaurantThree;
 
-    private String coordinate1;
-    private String coordinate2;
-
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
@@ -40,8 +39,8 @@ public class MainActivity extends SherlockActivity {
                 startActivity(order);
                 return true;
             case R.id.location:
-                coordinate1 = "53.127256";
-                coordinate2 = "17.993782";
+                String coordinate1 = "53.127256";
+                String coordinate2 = "17.993782";
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                         Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
                 startActivity(intent);
@@ -75,7 +74,8 @@ public class MainActivity extends SherlockActivity {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i2, long l) {
                 Intent moveToMenu = new Intent(getApplicationContext(), MenuActivity.class);
-
+                Log.d("MyDebug","onClick " + view.getTag(R.id.TAG_VIEW));
+                moveToMenu.putExtra("RestaurantId",(Integer)view.getTag(R.id.TAG_VIEW));
                 startActivity(moveToMenu);
 
                 return false;
@@ -91,15 +91,18 @@ public class MainActivity extends SherlockActivity {
 
         List<MenuItemDetailsBean> groupList = new ArrayList<MenuItemDetailsBean>();
         ArrayList <Restaurant> resArray = MyDAO.getInstance().getRestaurantArray();
+        ArrayList<Pair<Integer,Integer>> resIdList = new ArrayList<Pair<Integer,Integer>>();
 
         for(int i = 0;i < resArray.size();i++){
             groupTitleList.add(resArray.get(i).Name);
             MenuItemDetailsBean restaurantDetails1 = new MenuItemDetailsBean();
             restaurantDetails1.add(resArray.get(i).Desc_short);
             groupList.add(restaurantDetails1);
+            Pair<Integer,Integer> res = new Pair<Integer,Integer>(i,resArray.get(i).Restaurant_ID);
+            resIdList.add(res);
         }
 
-        MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
+        MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this, resIdList);
         listView.setAdapter(adapter);
 
     }

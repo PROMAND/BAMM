@@ -14,5 +14,6 @@
     <string name="minus">minus</string>
     <string name="plus">plus</string>
 
+    <item type="id" name="TAG_VIEW"/>
 
 </resources>
