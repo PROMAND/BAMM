@@ -96,7 +96,7 @@ public class MyDAO {
         currentMenuItemId = 0;
     }
 
-    public void downloadRestauration(){
+    public void downloadRestaurant(){
         DownloadJasonFile down = new DownloadJasonFile();
         down.execute("restaurant");
     }

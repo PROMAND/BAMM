@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import pl.byd.promand.Team3.R;
-import pl.byd.promand.Team3.infrastructure.data.DownloadJasonFile;
 import pl.byd.promand.Team3.infrastructure.data.GlobalState;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
@@ -17,7 +15,6 @@ import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
 
 import java.util.ArrayList;
@@ -74,9 +71,7 @@ public class MainActivity extends SherlockActivity {
             }
         });
 
-        MyDAO.getInstance().downloadRestauration();
-
-
+        MyDAO.getInstance().downloadRestaurant();
     }
 
     private void showListView(){
@@ -94,8 +89,6 @@ public class MainActivity extends SherlockActivity {
         }
 
         MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this);
-
-
         listView.setAdapter(adapter);
 
     }
