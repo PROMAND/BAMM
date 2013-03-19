@@ -165,7 +165,6 @@ public class OrderActivity extends SherlockActivity {
             setMonth(month);
             setDay(day);
             textViewDate.setText(String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(day));
-
         }
     };
 
@@ -175,7 +174,8 @@ public class OrderActivity extends SherlockActivity {
                 public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
                     setHours(hours);
                     setMinutes(minutes);
-                    textViewTime.setText(String.valueOf(hours) + ":" + String.valueOf(minutes));
+                    String selectedTime = String.format("%02d:%02d", hours, minutes);
+                    textViewTime.setText(selectedTime);
                 }
             };
 
