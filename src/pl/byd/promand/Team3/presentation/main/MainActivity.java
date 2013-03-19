@@ -28,23 +28,11 @@ public class MainActivity extends SherlockActivity {
     private String restaurantTwo;
     private String restaurantThree;
 
-    private String coordinate1;
-    private String coordinate2;
-
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.cart:
-                Intent order = new Intent(this, OrderActivity.class);
-                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(order);
-                return true;
-            case R.id.location:
-                coordinate1 = "53.127256";
-                coordinate2 = "17.993782";
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
-                startActivity(intent);
+            case R.id.info:
+
                 break;
             default:
                 break;
@@ -56,6 +44,8 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        // Change app action bar title
+        getSupportActionBar().setTitle("Restaurants");
         //Intent intent = new Intent(this, MenuActivity.class);
         //startActivity(intent);
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);

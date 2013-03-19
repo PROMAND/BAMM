@@ -56,11 +56,6 @@ public class OrderActivity extends SherlockActivity {
                 home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(home);
                 return true;
-            case R.id.cart:
-                Intent order = new Intent(this, OrderActivity.class);
-                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(order);
-                return true;
             case R.id.location:
                 coordinate1 = "53.127256";
                 coordinate2 = "17.993782";
@@ -77,6 +72,8 @@ public class OrderActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+        // Change app action bar title
+        getSupportActionBar().setTitle("Order");
 
         confirmButton = (Button) findViewById(R.id.orderConfirmButton);
         datePickButton = (Button) findViewById(R.id.btnDatePicker);
@@ -225,7 +222,7 @@ public class OrderActivity extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.order_menu, menu);
         return true;
     }
 
