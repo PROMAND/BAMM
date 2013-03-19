@@ -56,11 +56,6 @@ public class OrderActivity extends SherlockActivity {
                 home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(home);
                 return true;
-            case R.id.cart:
-                Intent order = new Intent(this, OrderActivity.class);
-                order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(order);
-                return true;
             case R.id.location:
                 coordinate1 = "53.127256";
                 coordinate2 = "17.993782";
@@ -77,6 +72,8 @@ public class OrderActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+        // Change app action bar title
+        getSupportActionBar().setTitle("Order");
 
         confirmButton = (Button) findViewById(R.id.orderConfirmButton);
         datePickButton = (Button) findViewById(R.id.btnDatePicker);
@@ -168,7 +165,6 @@ public class OrderActivity extends SherlockActivity {
             setMonth(month);
             setDay(day);
             textViewDate.setText(String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(day));
-
         }
     };
 
@@ -178,7 +174,8 @@ public class OrderActivity extends SherlockActivity {
                 public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
                     setHours(hours);
                     setMinutes(minutes);
-                    textViewTime.setText(String.valueOf(hours) + ":" + String.valueOf(minutes));
+                    String selectedTime = String.format("%02d:%02d", hours, minutes);
+                    textViewTime.setText(selectedTime);
                 }
             };
 
@@ -225,7 +222,7 @@ public class OrderActivity extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportMenuInflater().inflate(R.menu.order_menu, menu);
         return true;
     }
 

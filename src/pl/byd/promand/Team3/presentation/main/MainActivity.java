@@ -44,6 +44,8 @@ public class MainActivity extends SherlockActivity {
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                         Uri.parse("http://maps.google.com/maps?q=" + coordinate1 + "," + coordinate2));
                 startActivity(intent);
+            case R.id.info:
+
                 break;
             default:
                 break;
@@ -55,6 +57,8 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        // Change app action bar title
+        getSupportActionBar().setTitle("Restaurants");
         //Intent intent = new Intent(this, MenuActivity.class);
         //startActivity(intent);
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);

@@ -59,6 +59,8 @@ public class MenuActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        // Change app action bar title
+        getSupportActionBar().setTitle("Menu");
         myDao = MyDAO.getInstance();
 
         ExpandList = (ExpandableListView) findViewById(R.id.menuExpandableListView);
@@ -114,7 +116,7 @@ public class MenuActivity extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        getSupportMenuInflater().inflate(R.menu.main_menu,menu);
+        getSupportMenuInflater().inflate(R.menu.menu_menu,menu);
         return true;
     }
 
