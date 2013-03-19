@@ -19,22 +19,29 @@ public class OrderActivity extends SherlockActivity {
     private EditText nameET;
     private EditText phoneNumberET;
 
+    private TextView numOfSitsTV;
     private TextView textViewTime;
     private TextView textViewDate;
+    private TextView fillFormTV;
+    private TextView selectSitsTV;
 
     private Button confirmButton;
     private Button datePickButton;
     private Button timePickButton;
+    private ImageButton btnPlus;
+    private ImageButton btnMinus;
 
     private TimePickerDialog timePicker;
     private DatePickerDialog datePickerDialog;
-
 
     private Integer year;
     private Integer month;
     private Integer day;
     private Integer hours;
     private Integer minutes;
+    private Integer numOfSits;
+
+    private final int TEXT_SIZE = 20;
 
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
@@ -62,20 +69,54 @@ public class OrderActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
-        confirmButton = (Button)findViewById(R.id.orderConfirmButton);
-        datePickButton = (Button)findViewById(R.id.btnDatePicker);
-        timePickButton = (Button)findViewById(R.id.btnTimePirkcer);
+        confirmButton = (Button) findViewById(R.id.orderConfirmButton);
+        datePickButton = (Button) findViewById(R.id.btnDatePicker);
+        timePickButton = (Button) findViewById(R.id.btnTimePicker);
+        btnMinus = (ImageButton) findViewById(R.id.orderBtnMinus);
+        btnPlus = (ImageButton) findViewById(R.id.orderBtnPlus);
 
         textViewDate = (TextView) findViewById(R.id.orderDate);
         textViewTime = (TextView) findViewById(R.id.orderTime);
+        numOfSitsTV = (TextView) findViewById(R.id.orderEditTextSits);
+        fillFormTV = (TextView) findViewById(R.id.orderTextView);
+        selectSitsTV = (TextView) findViewById(R.id.orderTextViewSits);
 
-        nameET = (EditText)findViewById(R.id.orderEditTextName);
-        phoneNumberET = (EditText)findViewById(R.id.orderEditTextPhoneNumber);
+        nameET = (EditText) findViewById(R.id.orderEditTextName);
+        phoneNumberET = (EditText) findViewById(R.id.orderEditTextPhoneNumber);
+
+        numOfSitsTV.setText("0");
+        numOfSitsTV.setTextSize(TEXT_SIZE);
+        fillFormTV.setTextSize(TEXT_SIZE);
+        selectSitsTV.setTextSize(TEXT_SIZE);
+
+
+
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numOfSits = Integer.valueOf(numOfSitsTV.getText().toString());
+                if (numOfSits > 0) {
+                    numOfSits--;
+                }
+                numOfSitsTV.setText(String.valueOf(numOfSits));
+            }
+        });
+
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numOfSits = Integer.valueOf(numOfSitsTV.getText().toString());
+                if (numOfSits < 10) {
+                    numOfSits++;
+                }
+                numOfSitsTV.setText(String.valueOf(numOfSits));
+            }
+        });
 
         timePickButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timePicker = new TimePickerDialog(OrderActivity.this, onTimeSetListener,19,00,true);
+                timePicker = new TimePickerDialog(OrderActivity.this, onTimeSetListener, 19, 00, true);
                 timePicker.show();
 
             }
@@ -84,7 +125,7 @@ public class OrderActivity extends SherlockActivity {
         datePickButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                datePickerDialog = new DatePickerDialog(OrderActivity.this, onDateSetListener,2012,2,10);
+                datePickerDialog = new DatePickerDialog(OrderActivity.this, onDateSetListener, 2012, 2, 10);
                 datePickerDialog.show();
 
             }
@@ -95,11 +136,12 @@ public class OrderActivity extends SherlockActivity {
                 name = nameET.getText().toString();
                 phoneNumber = phoneNumberET.getText().toString();
 
-                String mailText = "Name: " + name + "Phone: " + phoneNumber + " Order date: " + textViewDate.getText() + " Order time: " + textViewTime.getText();
+                String mailText = "Name: " + name + " Phone: " + phoneNumber + " Order date: " + textViewDate.getText()
+                        + " Order time: " + textViewTime.getText() + " Number of sits: " + numOfSitsTV.getText();
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"tosha123@inbox.lv"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"tosha123@inbox.lv"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Table Reservation");
                 intent.putExtra(Intent.EXTRA_TEXT, mailText);
 
@@ -109,7 +151,7 @@ public class OrderActivity extends SherlockActivity {
 
     }
 
-    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener(){
+    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -123,13 +165,13 @@ public class OrderActivity extends SherlockActivity {
 
     private TimePickerDialog.OnTimeSetListener onTimeSetListener =
             new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
-            setHours(hours);
-            setMinutes(minutes);
-            textViewTime.setText(String.valueOf(hours) + ":" + String.valueOf(minutes));
-        }
-    };
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hours, int minutes) {
+                    setHours(hours);
+                    setMinutes(minutes);
+                    textViewTime.setText(String.valueOf(hours) + ":" + String.valueOf(minutes));
+                }
+            };
 
 
     public Integer getYear() {
@@ -173,8 +215,8 @@ public class OrderActivity extends SherlockActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getSupportMenuInflater().inflate(R.menu.main_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 

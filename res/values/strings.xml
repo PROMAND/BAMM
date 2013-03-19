@@ -11,5 +11,8 @@
     <string name="orderPickDateBtn">Pick Date</string>
     <string name="orderTime">Order time:</string>
     <string name="orderDate">Order date:</string>
+    <string name="minus">minus</string>
+    <string name="plus">plus</string>
+
 
 </resources>
