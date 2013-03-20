@@ -78,7 +78,6 @@ public class MainActivity extends SherlockActivity {
 
                 if (msg.getData().getString("type").compareTo("img_download") == 0){
                     adapter.update();
-                    Log.d("MyDebug","Msg dotarla");
                 }
             }
         };

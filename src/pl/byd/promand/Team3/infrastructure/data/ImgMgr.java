@@ -30,7 +30,6 @@ public class ImgMgr {
     }
 
     public Bitmap getBitmap(String path){
-        Log.d("MyDebug","GetBitmap" + path);
         getBitmapFromArray(path);
         Bitmap tempBitmap;
         if((tempBitmap = getBitmapFromArray(path)) != null)
@@ -50,8 +49,6 @@ public class ImgMgr {
             bitmapArray.add(pair);
             return bm;
         }
-
-        Log.d("MyDebug","File not in array");
         return null;
     }
 
@@ -62,7 +59,6 @@ public class ImgMgr {
                 return bitmapArray.get(i).second;
             }
         }
-        Log.d("MyDebug","File not in array");
         return null;
     }
 
@@ -87,11 +83,8 @@ public class ImgMgr {
                 dirName = dirName + "/";
                 File file = new File(dirName + fileName) ;
                 if (file.exists()){
-                      Log.d("MyDebug","File exists !");
                 }
 
-                Log.d("MyDebug","File : "+ dirName);
-                Log.d("MyDebug","Dir : "+dirName + fileName);
                 URL url = new URL("http://promand.xaa.pl/server/img/" +sUrl[0]);
                 URLConnection connection = url.openConnection();
                 connection.connect();
@@ -118,7 +111,6 @@ public class ImgMgr {
             bundle.putString("type", "img_download");
             msg.setData(bundle);
             GlobalState.getInstance().mainHandler.sendMessage(msg);
-            Log.d("MyDebug","Msg wyslana");
         }
     }
 
