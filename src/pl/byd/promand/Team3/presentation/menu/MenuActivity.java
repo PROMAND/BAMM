@@ -1,5 +1,6 @@
 package pl.byd.promand.Team3.presentation.menu;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -120,4 +121,5 @@ public class MenuActivity extends SherlockActivity {
         getSupportMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
+
 }

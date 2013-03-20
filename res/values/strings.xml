@@ -16,6 +16,7 @@
     <string name="info">About</string>
     <string name="order">Order</string>
     <string name="maps">Location</string>
+    <string name="table">View reservation</string>
 
     <item type="id" name="TAG_VIEW"/>
 
