@@ -61,6 +61,7 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             Bundle bundle = new Bundle();
 
             if (result.compareTo("restaurant") == 0) { //Todo: hardcoded name
+                MyDAO.getInstance().restaurantArray.clear();
                 saveRestaurantData(jsonArray);
                 bundle.putString("type", "restaurant");
                 msg.setData(bundle);
