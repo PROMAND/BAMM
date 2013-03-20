@@ -108,6 +108,7 @@ public class MenuActivity extends SherlockActivity {
             @Override
             public void onClick(View v) {
                 Intent intend = new Intent(getApplicationContext(), OrderActivity.class);
+                intend.putExtra("RestaurantId",(Integer)restaurant.Restaurant_ID);
                 startActivity(intend);
             }
         });

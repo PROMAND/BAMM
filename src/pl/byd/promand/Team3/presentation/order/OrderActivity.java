@@ -58,10 +58,6 @@ public class OrderActivity extends SherlockActivity {
                 startActivity(home);
                 return true;
             case R.id.location:
-                myDAO = MyDAO.getInstance();
-                //ToDo hardcoded restaurant id
-                restaurant = myDAO.getRestaurant(1);
-
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                         Uri.parse("http://maps.google.com/maps?q=" + restaurant.Localization_x + "," + restaurant.Localization_y));
                 startActivity(intent);
@@ -77,6 +73,8 @@ public class OrderActivity extends SherlockActivity {
         setContentView(R.layout.order);
         // Change app action bar title
         getSupportActionBar().setTitle("Order");
+        int resId = getIntent().getExtras().getInt("RestaurantId");
+        restaurant = MyDAO.getInstance().getRestaurant(resId);
 
         confirmButton = (Button) findViewById(R.id.orderConfirmButton);
         datePickButton = (Button) findViewById(R.id.btnDatePicker);
