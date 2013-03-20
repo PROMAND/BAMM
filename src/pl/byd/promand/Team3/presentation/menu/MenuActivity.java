@@ -81,7 +81,7 @@ public class MenuActivity extends SherlockActivity {
         ArrayList<ArrayList<MenuItem>> child_list = new ArrayList<ArrayList<MenuItem>>();
 
         int categoryItr = 0;
-        ArrayList<MenuCategory> catArray = myDao.getCategoryArray(1);
+        ArrayList<MenuCategory> catArray = myDao.getCategoryArray(restaurant.Restaurant_ID);
         while (categoryItr < catArray.size()) {
             ExpandListGroup group = new ExpandListGroup();
             group.setName(catArray.get(categoryItr).categoryName);
