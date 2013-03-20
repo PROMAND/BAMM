@@ -55,7 +55,6 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
 
     protected void onPostExecute(String result) {
         try {
-            MyDAO.getInstance().restaurantArray.clear();
             JSONArray jsonArray = new JSONArray(jsonString);
             Message msg = new Message();
             Bundle bundle = new Bundle();
