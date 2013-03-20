@@ -1,5 +1,7 @@
 package pl.byd.promand.Team3.presentation.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,10 +25,29 @@ import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 
 
 public class MainActivity extends SherlockActivity {
+    private AlertDialog alert;
+
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
             case R.id.info:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("About");
+                builder.setMessage("Some information about restaurants program..");
+
+                builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+
+                        dialog.dismiss();
+                    }
+
+                });
+
+                alert = builder.create();
+                alert.show();
                 break;
             default:
                 break;
