@@ -12,24 +12,18 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... sUrl) {
-
         InputStream is = null;
         String result = "";
 
         try {
-
             // Thread.sleep(4000);   //Slow network simulate
             HttpClient httpclient = new DefaultHttpClient();
             String Url;
@@ -56,7 +50,6 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             e.printStackTrace();
             return null;
         }
-
         return sUrl[0];
     }
 
@@ -72,8 +65,7 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
                 bundle.putString("type", "restaurant");
                 msg.setData(bundle);
                 GlobalState.getInstance().mainHandler.sendMessage(msg);
-
-            } else if(result.compareTo("menu_item") == 0){
+            } else if (result.compareTo("menu_item") == 0) {
                 saveMenuItemData(jsonArray);
                 bundle.putString("type", "menu_item");
                 msg.setData(bundle);
@@ -84,30 +76,30 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
         }
     }
 
-    private void saveRestaurantData(JSONArray jsonArray) throws JSONException{
-        for (int i = 0; i < jsonArray.length(); i++){
-        JSONObject jo = jsonArray.getJSONObject(i);
-        Restaurant temp = new Restaurant();
-        temp.Contact_email = jo.getString("Contact_email");
-        temp.Contact_number = jo.getString("Contact_number");
-        temp.Desc_long = jo.getString("Desc_long");
-        temp.Localization_x = jo.getString("Localization_x");
-        temp.Localization_y = jo.getString("Localization_y");
-        temp.Name = jo.getString("Name");
-        temp.Path_to_img = jo.getString("Path_to_img");
-        temp.Desc_short = jo.getString("Desc_short");
-        temp.Sits_current = jo.getInt("Sits_current");
-        temp.Sits_max = jo.getInt("Sits_max");
-        temp.Restaurant_ID = jo.getInt("Restaurant_ID");
+    private void saveRestaurantData(JSONArray jsonArray) throws JSONException {
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jo = jsonArray.getJSONObject(i);
+            Restaurant temp = new Restaurant();
+            temp.Contact_email = jo.getString("Contact_email");
+            temp.Contact_number = jo.getString("Contact_number");
+            temp.Desc_long = jo.getString("Desc_long");
+            temp.Localization_x = jo.getString("Localization_x");
+            temp.Localization_y = jo.getString("Localization_y");
+            temp.Name = jo.getString("Name");
+            temp.Path_to_img = jo.getString("Path_to_img");
+            temp.Desc_short = jo.getString("Desc_short");
+            temp.Sits_current = jo.getInt("Sits_current");
+            temp.Sits_max = jo.getInt("Sits_max");
+            temp.Restaurant_ID = jo.getInt("Restaurant_ID");
 
-        MyDAO.getInstance().restaurantArray.add(temp);
+            MyDAO.getInstance().restaurantArray.add(temp);
         }
     }
 
     private void saveMenuItemData(JSONArray jsonArray) throws JSONException {
 
         ArrayList<MenuItem> menuItemArray = new ArrayList<MenuItem>();
-        for (int i = 0; i < jsonArray.length(); i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jo = jsonArray.getJSONObject(i);
             MenuItem temp = new MenuItem();
 

@@ -1,15 +1,16 @@
 package pl.byd.promand.Team3.infrastructure.menu;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
+
+import java.util.ArrayList;
 
 public class ExpandListAdapter extends BaseExpandableListAdapter {
 
@@ -71,12 +72,11 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(child.getCollapsed() == true)
-                {
+                if (child.getCollapsed() == true) {
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.VISIBLE);
                     child.setCollapsed(false);
-                }else{
+                } else {
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.GONE);
                     child.setCollapsed(true);

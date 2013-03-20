@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
@@ -179,7 +180,6 @@ public class OrderActivity extends SherlockActivity {
                 }
             };
 
-
     public Integer getYear() {
         return year;
     }
@@ -225,5 +225,4 @@ public class OrderActivity extends SherlockActivity {
         getSupportMenuInflater().inflate(R.menu.order_menu, menu);
         return true;
     }
-
 }

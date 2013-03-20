@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.GlobalState;
@@ -20,6 +19,8 @@ import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
+
+
 
 public class MainActivity extends SherlockActivity {
     @Override

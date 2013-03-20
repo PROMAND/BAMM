@@ -4,19 +4,19 @@ import android.app.Application;
 import android.os.Handler;
 import android.util.Log;
 
-public class GlobalState extends Application{
+public class GlobalState extends Application {
     public Handler mainHandler;
     public Handler menuHandler;
 
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         instance = this;
-        Log.d("MyDebug","class GlobalState onCreate()");
+        Log.d("MyDebug", "class GlobalState onCreate()");
     }
 
-    static public GlobalState getInstance(){
+    static public GlobalState getInstance() {
         return instance;
     }
-    static GlobalState instance;
 
+    static GlobalState instance;
 }

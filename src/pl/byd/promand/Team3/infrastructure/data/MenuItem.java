@@ -1,7 +1,6 @@
 package pl.byd.promand.Team3.infrastructure.data;
 
-public class MenuItem{
-
+public class MenuItem {
     public int menuItemId;
     public int menuId;
     public int restaurantId;
@@ -16,13 +15,18 @@ public class MenuItem{
     public String getName() {
         return name;
     }
+
     public void setName(String Name) {
         this.name = Name;
     }
 
-    public boolean getCollapsed()
-    {return collapsed;}
-    public void setCollapsed(boolean collapsed) {this.collapsed = collapsed;}
+    public boolean getCollapsed() {
+        return collapsed;
+    }
+
+    public void setCollapsed(boolean collapsed) {
+        this.collapsed = collapsed;
+    }
 
     public int getId() {
         return id;
@@ -32,8 +36,7 @@ public class MenuItem{
         this.id = id;
     }
 
-    //TODO: wtf
-    public MenuItem(MenuItem temp){
+    public MenuItem(MenuItem temp) {
         this.menuItemId = temp.menuItemId;
         this.restaurantId = temp.restaurantId;
         this.ingredients = temp.ingredients;
@@ -45,5 +48,6 @@ public class MenuItem{
         this.collapsed = temp.collapsed;
     }
 
-    public MenuItem(){}
+    public MenuItem() {
+    }
 }

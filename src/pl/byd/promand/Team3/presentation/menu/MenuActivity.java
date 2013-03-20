@@ -1,26 +1,24 @@
 package pl.byd.promand.Team3.presentation.menu;
 
-
-import java.io.DataOutput;
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.*;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListAdapter;
 import pl.byd.promand.Team3.infrastructure.menu.ExpandListGroup;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
 import pl.byd.promand.Team3.presentation.order.OrderActivity;
+
+import java.util.ArrayList;
 
 public class MenuActivity extends SherlockActivity {
     private ExpandListAdapter ExpAdapter;
@@ -46,7 +44,6 @@ public class MenuActivity extends SherlockActivity {
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                         Uri.parse("http://maps.google.com/maps?q=" + restaurant.Localization_x + "," + restaurant.Localization_y));
                 startActivity(intent);
-
                 break;
             default:
                 break;
@@ -62,7 +59,6 @@ public class MenuActivity extends SherlockActivity {
         getSupportActionBar().setTitle("Menu");
         myDao = MyDAO.getInstance();
 
-
         int resId = getIntent().getExtras().getInt("RestaurantId");
         restaurant = MyDAO.getInstance().getRestaurant(resId);
         MyDAO.getInstance().downloadMenuItems(resId);
@@ -75,14 +71,12 @@ public class MenuActivity extends SherlockActivity {
                     ExpListItems = SetStandardGroups();
                     ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
                     ExpandList.setAdapter(ExpAdapter);
-                    Log.d("MyDebug","menu_item Handler");
                 }
             }
         };
     }
 
     public ArrayList<ExpandListGroup> SetStandardGroups() {
-
         ArrayList<ExpandListGroup> gru_list = new ArrayList<ExpandListGroup>();
         ArrayList<ArrayList<MenuItem>> child_list = new ArrayList<ArrayList<MenuItem>>();
 
@@ -117,7 +111,6 @@ public class MenuActivity extends SherlockActivity {
                 startActivity(intend);
             }
         });
-
         return gru_list;
     }
 
@@ -126,5 +119,4 @@ public class MenuActivity extends SherlockActivity {
         getSupportMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
-
 }
