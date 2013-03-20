@@ -58,8 +58,6 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         TextView itemDesc = (TextView) view.findViewById(R.id.TVmenuFoodDescription);
         TextView itemIng = (TextView) view.findViewById(R.id.TVmenuFoodIngredients);
 
-        //Log.d("MyDebug","desc:" + child.getName());
-
         itemDesc.setText(child.description);
         itemIng.setText(child.ingredients);
 

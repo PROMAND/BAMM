@@ -3,19 +3,24 @@ package pl.byd.promand.Team3.presentation.main;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.List;
+
+import android.widget.ImageView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.GlobalState;
+import pl.byd.promand.Team3.infrastructure.data.ImgMgr;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
@@ -26,7 +31,8 @@ import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 
 public class MainActivity extends SherlockActivity {
     private AlertDialog alert;
-
+    private ExpandableListView listView;
+    private MainExpandableListAdapter adapter;
     @Override
     public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
@@ -61,13 +67,19 @@ public class MainActivity extends SherlockActivity {
         setContentView(R.layout.main);
         // Change app action bar title
         getSupportActionBar().setTitle("Restaurants");
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
+        listView = (ExpandableListView) findViewById(R.id.expandableListView);
+
 
         GlobalState.getInstance().mainHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.getData().getString("type").compareTo("restaurant") == 0)
                     showListView();
+
+                if (msg.getData().getString("type").compareTo("img_download") == 0){
+                    adapter.update();
+                    Log.d("MyDebug","Msg dotarla");
+                }
             }
         };
 
@@ -77,15 +89,18 @@ public class MainActivity extends SherlockActivity {
                 Intent moveToMenu = new Intent(getApplicationContext(), MenuActivity.class);
                 moveToMenu.putExtra("RestaurantId", (Integer) view.getTag(R.id.TAG_VIEW));
                 startActivity(moveToMenu);
-
                 return false;
             }
         });
+
+
 
         MyDAO.getInstance().downloadRestaurant();
     }
 
     private void showListView() {
+        //Bitmap bm = ImgMgr.getInstance().getBitmap("/storage/emulated/0/tmp/drawable/main_menu_expanded/amber_room.jpg");
+        //ImgMgr.getInstance().downloadImg(""); // Call this after donwload restaurant table !
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.expandableListView);
         List<String> groupTitleList = new ArrayList<String>();
 
@@ -102,7 +117,7 @@ public class MainActivity extends SherlockActivity {
             resIdList.add(res);
         }
 
-        MainExpandableListAdapter adapter = new MainExpandableListAdapter(groupTitleList, groupList, this, resIdList);
+        adapter = new MainExpandableListAdapter(groupTitleList, groupList, this, resIdList);
         listView.setAdapter(adapter);
     }
 

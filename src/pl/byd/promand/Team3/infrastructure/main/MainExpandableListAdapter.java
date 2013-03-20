@@ -1,16 +1,21 @@
 package pl.byd.promand.Team3.infrastructure.main;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.ImgMgr;
+import pl.byd.promand.Team3.infrastructure.data.MyDAO;
+import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 
 public class MainExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> groupTitleList;
@@ -76,9 +81,9 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.main_menu_item_detail, null);
+            convertView = infalInflater.inflate(R.layout.main_list_group, null);
         }
-        TextView textView = (TextView) convertView.findViewById(R.id.textViewItemDetails);
+        TextView textView = (TextView) convertView.findViewById(R.id.TVmainGroup);
         textView.setText(group);
 
         return convertView;
@@ -96,7 +101,16 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textView = (TextView) convertView.findViewById(R.id.textViewItemDetails);
         textView.setText(child);
         convertView.setTag(R.id.TAG_VIEW, getIdGroup(groupPosition));
+
+        Restaurant restaurant = MyDAO.getInstance().getRestaurant(getIdGroup(groupPosition));
+        ImageView imgView = (ImageView)convertView.findViewById(R.id.mainMenuImg);
+        imgView.setImageBitmap(ImgMgr.getInstance().getBitmap(restaurant.Path_to_img));
         return convertView;
+    }
+
+    public void update(){
+        this.notifyDataSetChanged();
+        Log.d("MyDebug","notifyDataSetChanged");
     }
 
     @Override
