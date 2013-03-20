@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
     @Override
@@ -70,6 +71,11 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
                 bundle.putString("type", "menu_item");
                 msg.setData(bundle);
                 GlobalState.getInstance().menuHandler.sendMessage(msg);
+            } else if (result.equals("menu")){
+                saveMenuCategoryItemData(jsonArray);
+                bundle.putString("type", "menu");
+                msg.setData(bundle);
+                GlobalState.getInstance().mainHandler.sendMessage(msg);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,6 +122,21 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
         }
         MyDAO.getInstance().setMenuItemArray(menuItemArray);
 
+    }
+
+    private void saveMenuCategoryItemData(JSONArray jsonArray) throws JSONException {
+        ArrayList<MenuCategory> menuCategoryList = new ArrayList<MenuCategory>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jo = jsonArray.getJSONObject(i);
+            MenuCategory temp = new MenuCategory();
+
+            temp.setMenuId(jo.getInt("Menu_ID"));
+            temp.setCategoryId(jo.getInt("Category"));
+            temp.setDescription(jo.getString("Description"));
+
+            menuCategoryList.add(temp);
+        }
+        MyDAO.getInstance().setMenuList(menuCategoryList);
     }
 
     public String jsonString;

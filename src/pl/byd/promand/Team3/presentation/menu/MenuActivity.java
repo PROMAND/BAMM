@@ -63,6 +63,7 @@ public class MenuActivity extends SherlockActivity {
         int resId = getIntent().getExtras().getInt("RestaurantId");
         restaurant = MyDAO.getInstance().getRestaurant(resId);
         MyDAO.getInstance().downloadMenuItems(resId);
+        MyDAO.getInstance().downloadMenu();
 
         GlobalState.getInstance().menuHandler = new Handler() {
             @Override
@@ -82,15 +83,15 @@ public class MenuActivity extends SherlockActivity {
         ArrayList<ArrayList<MenuItem>> child_list = new ArrayList<ArrayList<MenuItem>>();
 
         int categoryItr = 0;
-        ArrayList<MenuCategory> catArray = myDao.getCategoryArray(restaurant.Restaurant_ID);
+        ArrayList<MenuCategory> catArray = myDao.getMenuList();//myDao.getCategoryArray(restaurant.Restaurant_ID);
         while (categoryItr < catArray.size()) {
             ExpandListGroup group = new ExpandListGroup();
-            group.setName(catArray.get(categoryItr).categoryName);
+            group.setName(catArray.get(categoryItr).getDescription());
             gru_list.add(group);
 
             ArrayList<MenuItem> temp_child_list = new ArrayList<MenuItem>();
             int itemItr = 0;
-            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(restaurant.Restaurant_ID, catArray.get(categoryItr).categoryId);
+            ArrayList<MenuItem> itemArray = myDao.getMenuItemArray(restaurant.Restaurant_ID, catArray.get(categoryItr).getCategoryId());
             while (itemItr < itemArray.size()) {
                 MenuItem tempItem = itemArray.get(itemItr);
                 MenuItem child = new MenuItem(itemArray.get(itemItr));

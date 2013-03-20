@@ -1,6 +1,7 @@
 package pl.byd.promand.Team3.infrastructure.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyDAO {
     /**********************************/
@@ -9,6 +10,18 @@ public class MyDAO {
     /**
      * ******************************
      */
+    private ArrayList<MenuCategory> menuList = new ArrayList<MenuCategory>();
+
+    public ArrayList<MenuCategory> getMenuList() {
+        if (menuList != null) {
+            return menuList;
+        }
+        return new ArrayList<MenuCategory>();
+    }
+
+    public void setMenuList(ArrayList<MenuCategory> menuList) {
+        this.menuList = menuList;
+    }
 
     public Order getNewOrder(int restaurantId) {
         return new Order(getNewReservationId(), restaurantId);
@@ -46,19 +59,6 @@ public class MyDAO {
      */
     private int currentMenuItemId;
 
-    public ArrayList<MenuCategory> getCategoryArray(int restaurantId) {
-        ArrayList<MenuCategory> tempArray = new ArrayList<MenuCategory>();
-        //todo db support
-        for (int i = 1; i < 4; i++) {
-            MenuCategory temp = new MenuCategory();
-            temp.categoryId = i;
-            temp.restaurantId = restaurantId;
-            temp.categoryName = "Category" + i;
-            tempArray.add(temp);
-        }
-        return tempArray;
-    }
-
     private static MyDAO ourInstance = new MyDAO();
 
     public static MyDAO getInstance() {
@@ -78,6 +78,11 @@ public class MyDAO {
     public void downloadRestaurant() {
         DownloadJasonFile down = new DownloadJasonFile();
         down.execute("restaurant");
+    }
+
+    public void downloadMenu() {
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("menu");
     }
 
     public ArrayList<Restaurant> getRestaurantArray() {
