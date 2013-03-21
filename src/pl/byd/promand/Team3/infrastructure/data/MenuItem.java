@@ -1,5 +1,7 @@
 package pl.byd.promand.Team3.infrastructure.data;
 
+import android.util.Log;
+
 public class MenuItem {
     public int menuItemId;
     public int menuId;
@@ -18,12 +20,13 @@ public class MenuItem {
         if(t == 0)
             return "none";
 
-        if(((int)(t/60) != 0)){
+        if(t <60 ){
             temp = Integer.valueOf(t).toString() + "min";
         } else {
             temp = Integer.valueOf(t/60) + "h " + Integer.valueOf(t % 60).toString()+"min";
         }
-        return "";
+        Log.d("MyDebug","Time:" + t + " convert:" + temp);
+        return temp;
     }
 
     public String getName() {

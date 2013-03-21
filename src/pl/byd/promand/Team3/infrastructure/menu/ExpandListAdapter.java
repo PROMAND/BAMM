@@ -50,31 +50,43 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         }
 
         MenuItem menuItem = MyDAO.getInstance().getMenuItem(child.getId());
+
+        //all Views
         TextView tv = (TextView) view.findViewById(R.id.textViewChild);
-
-        tv.setText(child.getName());
-        tv.setTag(child.getId());
-
         TextView itemDesc = (TextView) view.findViewById(R.id.TVmenuFoodDescription);
         TextView itemIng = (TextView) view.findViewById(R.id.TVmenuFoodIngredients);
-
+        TextView count = (TextView) view.findViewById(R.id.TVcountOrder);
+        TextView itemPrice = (TextView) view.findViewById(R.id.TVmenuPrice);
+        TextView itemPrep = (TextView) view.findViewById(R.id.TVmenuPreparation);
+        ImageView itemImg = (ImageView)view.findViewById(R.id.IMGmenuItem);
         ImageButton plus = (ImageButton)view.findViewById(R.id.orderBtnPlus);
         ImageButton minus = (ImageButton)view.findViewById(R.id.orderBtnMinus);
 
+        //set data
+        tv.setTag(child.getId());
         plus.setTag(R.id.TAG_VIEW,(Integer)child.getId());
         minus.setTag(R.id.TAG_VIEW,(Integer)child.getId());
-
-        TextView count = (TextView) view.findViewById(R.id.TVcountOrder);
-        count.setText("" + GlobalState.getInstance().getOrder(child.getId()));
-
-        ImageView itemImg = (ImageView)view.findViewById(R.id.IMGmenuItem);
-        if(itemImg == null){
-            Log.d("MyDebug","Itemimg jest nullem");
-        }
-
-        Log.d("MyDebug","Path"+menuItem.path_to_img);
+        tv.setText(child.getName());
+        itemDesc.setText(menuItem.description);
+        itemIng.setText(child.ingredients);
+        itemPrice.setText(Double.valueOf(child.price).toString());
+        itemPrep.setText(child.getPreparationTime());
         itemImg.setImageBitmap(ImgMgr.getInstance().getBitmap(menuItem.path_to_img));
-        itemImg.setVisibility(View.GONE);
+
+        //visibility (dynamic panel)
+        if(child.getCollapsed() == true){
+            itemDesc.setVisibility(View.GONE);
+            itemIng.setVisibility(View.GONE);
+            itemPrice.setVisibility(View.GONE);
+            itemPrep.setVisibility(View.GONE);
+            itemImg.setVisibility(View.GONE);
+        } else {
+            itemDesc.setVisibility(View.VISIBLE);
+            itemIng.setVisibility(View.VISIBLE);
+            itemPrice.setVisibility(View.VISIBLE);
+            itemPrep.setVisibility(View.VISIBLE);
+            itemImg.setVisibility(View.VISIBLE);
+        }
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,19 +108,6 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        itemDesc.setText(menuItem.description);
-        itemIng.setText(child.ingredients);
-        itemDesc.setVisibility(View.GONE);
-        itemIng.setVisibility(View.GONE);
-
-        TextView itemView = (TextView) view.findViewById(R.id.TVmenuPrice);
-        itemView.setText(Double.valueOf(child.price).toString());
-        itemView.setVisibility(View.GONE);
-
-        itemView = (TextView) view.findViewById(R.id.TVmenuPreparation);
-        itemView.setText(child.getPreparationTime());
-        itemView.setVisibility(View.GONE);
-
         //TODO: null pointer when activity is gone ?
         final View copyView = view;
 
@@ -129,6 +128,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     copyView.findViewById(R.id.IMGmenuItem).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuPrice).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuPreparation).setVisibility(View.GONE);
+
                     child.setCollapsed(true);
                 }
 
