@@ -58,7 +58,7 @@ public class MenuActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         // Change app action bar title
-        getSupportActionBar().setTitle("Menu");
+        getSupportActionBar().setTitle("RestoPesto: Choose the dishes");
         myDao = MyDAO.getInstance();
 
         int resId = getIntent().getExtras().getInt("RestaurantId");

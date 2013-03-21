@@ -76,9 +76,8 @@ public class MainActivity extends SherlockActivity {
         }
 
         // Change app action bar title
-        getSupportActionBar().setTitle("Restaurants");
+        getSupportActionBar().setTitle("RestoPesto : choose the restaurant");
         listView = (ExpandableListView) findViewById(R.id.expandableListView);
-
 
         GlobalState.getInstance().mainHandler = new Handler() {
             @Override
