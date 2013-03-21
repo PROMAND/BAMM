@@ -32,6 +32,7 @@ public class MyDAO {
     public void setRestaurantTimes(ArrayList<RestaurantTime> restaurantTimes) {
         this.restaurantTimes = restaurantTimes;
     }
+
     private ArrayList<Order> orderArray = new ArrayList<Order>();
     private int currentReservationId = 0;
 
@@ -85,15 +86,11 @@ public class MyDAO {
         down.execute("restaurant");
     }
 
-   public void downloadCustomer() {
+    public void downloadCustomer() {
         DownloadJasonFile down = new DownloadJasonFile();
         down.execute("customer");
     }
 
-    public void downloadOrders() {
-        DownloadJasonFile down = new DownloadJasonFile();
-        down.execute("orders");
-    }
 
     public void downloadMenu() {
         DownloadJasonFile down = new DownloadJasonFile();
@@ -110,13 +107,14 @@ public class MyDAO {
         down.execute("restaurant_time");
     }
 
-    public Customer getCustomer(){
-        return null;
+
+    public ArrayList<Reservation> getReservationArrayList() {
+        if (reservationArrayList != null) {
+            return reservationArrayList;
+        }
+        return new ArrayList<Reservation>();
     }
 
-    public Reservation getReservation(){
-        return null;
-    }
 
     public ArrayList<Restaurant> getRestaurantArray() {
         if (!restaurantArray.isEmpty())
