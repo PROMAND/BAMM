@@ -133,11 +133,10 @@ public class MyDAO {
     }
 
     public ArrayList<MenuItem> getMenuItemArray(int restaurantId) {
-        for (int i = 0; i < menuItem.size(); i++) {
-            if (menuItem.get(i).get(0).restaurantId == restaurantId) {
-                return menuItem.get(i);
-            }
-        }
+        for(ArrayList<MenuItem> i : menuItem )
+            for(MenuItem j : i)
+                if(j.restaurantId == restaurantId)
+                    return i;
         return null;
     }
 
