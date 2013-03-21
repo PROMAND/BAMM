@@ -43,7 +43,7 @@ public class MainActivity extends SherlockActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                 builder.setTitle("About RestoPesto");
-                builder.setMessage("Some information about restaurants program..");
+                builder.setMessage("This program created by: Borys Patyk, Anton Zemskov, Matten Mätlik and Mindaugas Degutis");
 
                 builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
 
