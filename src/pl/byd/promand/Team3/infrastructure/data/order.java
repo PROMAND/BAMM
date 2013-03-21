@@ -11,7 +11,6 @@ public class Order {
     }
 
     public Order() {
-        reservationId = MyDAO.getInstance().getNewReservationId();
     }
 
     public int getRestaurantId() {

@@ -25,11 +25,6 @@ public class MyDAO {
         this.menuList = menuList;
     }
 
-    public Order getNewOrder(int restaurantId) {
-        return new Order(getNewReservationId(), restaurantId);
-    }
-
-
     private ArrayList<Order> orderArray = new ArrayList<Order>();
     private int currentReservationId = 0;
 
