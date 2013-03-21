@@ -29,11 +29,48 @@
               android:paddingRight="5dip"
               android:textSize="17dip"/>
 
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:gravity="bottom">
+
+        <TextView android:id="@+id/seatsit"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/seats"
+                  android:textStyle="bold"
+                  android:paddingLeft="5dip"
+                  android:paddingRight="5dip"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max seats"
+                android:id="@+id/TVMaxSeats"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"/>
+
+    </LinearLayout>
+
     <TextView android:id="@+id/contactit"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:text="@string/con"
               android:textStyle="bold"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+    <TextView android:id="@+id/numberit"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/cellnr"
+              android:textStyle="bold"
+              android:paddingLeft="5dip"
+              android:paddingRight="5dip"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,6 +80,20 @@
         android:paddingLeft="5dip"
         android:paddingRight="5dip"/>
 
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+    <TextView android:id="@+id/numberit"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/email"
+              android:textStyle="bold"
+              android:paddingLeft="5dip"
+              android:paddingRight="5dip"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,5 +101,7 @@
         android:id="@+id/TVmainEmail"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"/>
+
+    </LinearLayout>
 </LinearLayout>
 

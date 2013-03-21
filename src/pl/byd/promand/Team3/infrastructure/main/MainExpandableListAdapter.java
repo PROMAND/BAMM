@@ -112,7 +112,6 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         convertView.setTag(R.id.TAG_VIEW, getIdGroup(groupPosition));
 
 
-
         textView = (TextView) convertView.findViewById(R.id.TVmainCellNr);
         textView.setText(restaurant.Contact_number);
 

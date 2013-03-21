@@ -83,18 +83,47 @@
             android:paddingRight="5dip"/>
 
         <TextView android:id="@+id/priceit"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
                   android:text="@string/priceandtime"
-                  android:textStyle="bold"/>
+                  android:textStyle="bold"
+                  android:paddingLeft="5dip"
+                  android:paddingRight="5dip"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="price"
-            android:id="@+id/TVmenuPrice"
-            android:paddingLeft="5dip"
-            android:paddingRight="5dip"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            <TextView android:id="@+id/priceititit"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/pricett"
+                      android:textStyle="bold"
+                      android:paddingLeft="5dip"
+                      android:paddingRight="5dip"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="price"
+                    android:id="@+id/TVmenuPrice"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cell number"
+                    android:id="@+id/TVmainCellNr"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"/>
+
+        </LinearLayout>
+
+
+
+
 
         <TextView
             android:layout_width="wrap_content"

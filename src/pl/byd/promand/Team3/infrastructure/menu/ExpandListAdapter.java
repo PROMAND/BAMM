@@ -76,6 +76,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         itemPrep.setText(child.getPreparationTime());
         itemImg.setImageBitmap(ImgMgr.getInstance().getBitmap(menuItem.path_to_img));
 
+
         //visibility (dynamic panel)
         if(child.getCollapsed() == true){
             itemDesc.setVisibility(View.GONE);

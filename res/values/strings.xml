@@ -20,11 +20,15 @@
     <string name="table">View reservation</string>
     <string name="des">Description</string>
     <string name="con">Contacts</string>
-    <string name="cellnr">Cell Number: </string>
+    <string name="cellnr">Cell Number:</string>
     <string name="check_internet">Check Internet connection</string>
     <string name="close">Close</string>
     <string name="ingradients">Ingradients</string>
     <string name="priceandtime">Price and delivery time</string>
+    <string name="email">EMail:</string>
+    <string name="seats">Max seats:</string>
+    <string name="pricett">Price:</string>
+    <string name="delivery">Delivery time:</string>
 
     <item type="id" name="TAG_VIEW"/>
 
