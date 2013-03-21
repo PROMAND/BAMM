@@ -10,7 +10,6 @@ public class MenuItem {
     public String name;
     public String path_to_img;
     private boolean collapsed = true;
-    private int id;
 
     public String getName() {
         return name;
@@ -29,11 +28,11 @@ public class MenuItem {
     }
 
     public int getId() {
-        return id;
+        return menuItemId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.menuItemId = id;
     }
 
     public MenuItem(MenuItem temp) {
@@ -44,8 +43,8 @@ public class MenuItem {
         this.menuId = temp.menuId;
         this.name = temp.name;
         this.description = temp.description;
-        this.id = temp.id;
         this.collapsed = temp.collapsed;
+        this.path_to_img = temp.path_to_img;
     }
 
     public MenuItem() {

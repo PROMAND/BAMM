@@ -1,13 +1,14 @@
 package pl.byd.promand.Team3.infrastructure.menu;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.TextView;
+import android.widget.*;
 
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.GlobalState;
 import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 
 import java.util.ArrayList;
@@ -57,6 +58,35 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         TextView itemDesc = (TextView) view.findViewById(R.id.TVmenuFoodDescription);
         TextView itemIng = (TextView) view.findViewById(R.id.TVmenuFoodIngredients);
+
+        ImageButton plus = (ImageButton)view.findViewById(R.id.orderBtnPlus);
+        ImageButton minus = (ImageButton)view.findViewById(R.id.orderBtnMinus);
+
+        plus.setTag(R.id.TAG_VIEW,(Integer)child.getId());
+        minus.setTag(R.id.TAG_VIEW,(Integer)child.getId());
+
+        TextView count = (TextView) view.findViewById(R.id.TVcountOrder);
+        count.setText("" + GlobalState.getInstance().getOrder(child.getId()));
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalState.getInstance().addToOrder((Integer)v.getTag(R.id.TAG_VIEW));
+
+                TextView count = (TextView)((LinearLayout)v.getParent()).findViewById(R.id.TVcountOrder);
+                count.setText("" + GlobalState.getInstance().getOrder((Integer)v.getTag(R.id.TAG_VIEW)));
+            }
+        });
+
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalState.getInstance().dropOrder((Integer) v.getTag(R.id.TAG_VIEW));
+
+                TextView count = (TextView)((LinearLayout)v.getParent()).findViewById(R.id.TVcountOrder);
+                count.setText("" + GlobalState.getInstance().getOrder((Integer)v.getTag(R.id.TAG_VIEW)));
+            }
+        });
 
         itemDesc.setText(child.description);
         itemIng.setText(child.ingredients);
