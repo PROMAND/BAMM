@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:weightSum="10"
+              android:layout_height="fill_parent"
+              android:weightSum="28"
         >
 
 
@@ -11,13 +11,15 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:id="@+id/menuExpandableListView"
-            android:layout_weight="9"/>
+            android:layout_weight="26"/>
 
     <Button
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:text="ORDER"
+            android:text="@string/orderButton"
+            android:textSize="17dp"
             android:id="@+id/menuOrderButton"
-            android:layout_weight="1"/>
+            android:layout_weight="2"
+            android:layout_gravity="bottom"/>
 </LinearLayout>
 

@@ -148,8 +148,9 @@
     <Button
             android:id="@+id/orderConfirmButton"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:text="@string/orderConfirmButton"
+            android:textSize="17dp"
             android:layout_gravity="bottom"
             />
 

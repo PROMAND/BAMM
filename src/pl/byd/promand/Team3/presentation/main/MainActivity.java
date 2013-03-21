@@ -1,6 +1,8 @@
 package pl.byd.promand.Team3.presentation.main;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,6 +27,7 @@ import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
 import pl.byd.promand.Team3.infrastructure.main.MainExpandableListAdapter;
 import pl.byd.promand.Team3.infrastructure.main.MenuItemDetailsBean;
+import pl.byd.promand.Team3.infrastructure.main.NetworkChecker;
 import pl.byd.promand.Team3.presentation.menu.MenuActivity;
 
 
@@ -65,6 +68,13 @@ public class MainActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        boolean isInternetAvailable = checkForNetworkConnection(MainActivity.this);
+        if(!isInternetAvailable){
+            Dialog dialog = new NoNetworkDialog(MainActivity.this);
+            dialog.show();
+        }
+
         // Change app action bar title
         getSupportActionBar().setTitle("Restaurants");
         listView = (ExpandableListView) findViewById(R.id.expandableListView);
@@ -123,6 +133,15 @@ public class MainActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean checkForNetworkConnection(Context context) {
+        NetworkChecker networkChecker = NetworkChecker.getInstance();
+        if(!networkChecker.isConnectedToNetwork(context)){
+            networkChecker.displayNoNetworkDialog(context);
+            return false;
+        }
         return true;
     }
 }

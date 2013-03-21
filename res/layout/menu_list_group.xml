@@ -9,7 +9,7 @@ android:orientation="vertical" android:gravity="center">
 <TextView
     android:id="@+id/tvGroup"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dp"
     android:layout_marginRight="15dp"
     android:textSize="28dip" android:gravity="center"/>
 

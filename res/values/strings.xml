@@ -4,7 +4,8 @@
     <string name="orderTextOnTop">Please fill out the folloing form</string>
     <string name="orderEditTextName">Name</string>
     <string name="orderEditTextPhoneNumber">Phone number</string>
-    <string name="orderConfirmButton">Confirm</string>
+    <string name="orderConfirmButton">CONFIRM</string>
+    <string name="orderButton">ORDER</string>
     <string name="orderReview">OrderReview</string>
     <string name="orderSits">Number of sits</string>
     <string name="orderPickTimeBtn">Pick Time</string>
@@ -20,6 +21,8 @@
     <string name="des">Description</string>
     <string name="con">Contacts</string>
     <string name="cellnr">Cell Number: </string>
+    <string name="check_internet">Check Internet connection</string>
+    <string name="close">Close</string>
 
     <item type="id" name="TAG_VIEW"/>
 
