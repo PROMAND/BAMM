@@ -25,7 +25,6 @@ public class MenuItem {
         } else {
             temp = Integer.valueOf(t/60) + "h " + Integer.valueOf(t % 60).toString()+"min";
         }
-        Log.d("MyDebug","Time:" + t + " convert:" + temp);
         return temp;
     }
 
