@@ -42,7 +42,7 @@ public class MainActivity extends SherlockActivity {
             case R.id.info:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                builder.setTitle("About");
+                builder.setTitle("About RestoPesto");
                 builder.setMessage("Some information about restaurants program..");
 
                 builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {

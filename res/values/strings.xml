@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Restaurants</string>
+    <string name="app_name">RestoPesto</string>
     <string name="orderTextOnTop">Please fill out the folloing form</string>
     <string name="orderEditTextName">Name</string>
     <string name="orderEditTextPhoneNumber">Phone number</string>
@@ -23,6 +23,8 @@
     <string name="cellnr">Cell Number: </string>
     <string name="check_internet">Check Internet connection</string>
     <string name="close">Close</string>
+    <string name="ingradients">Ingradients</string>
+    <string name="priceandtime">Price and delivery time</string>
 
     <item type="id" name="TAG_VIEW"/>
 

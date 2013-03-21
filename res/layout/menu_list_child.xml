@@ -26,6 +26,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="0"
+                android:textSize="20dip"
                 android:id="@+id/TVcountOrder" android:layout_gravity="center" android:gravity="center"
                 android:layout_weight="0"/>
         <ImageButton
@@ -40,35 +41,68 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_gravity="left">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/IMGmenuItem"
+            android:scaleType="centerInside"
             android:layout_height="wrap_content"
-            android:id="@+id/IMGmenuItem" />
+            android:layout_width="200dp"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:padding="1dp"
+            android:adjustViewBounds="true"/>
+
+        <TextView android:id="@+id/descriptionit"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:text="@string/des"
+                  android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:id="@+id/TVmenuFoodDescription"/>
+            android:id="@+id/TVmenuFoodDescription"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"/>
+
+        <TextView android:id="@+id/ingradientit"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:text="@string/ingradients"
+                  android:textStyle="bold"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ingridients"
-            android:id="@+id/TVmenuFoodIngredients"/>
+            android:id="@+id/TVmenuFoodIngredients"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"/>
+
+        <TextView android:id="@+id/priceit"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:text="@string/priceandtime"
+                  android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="price"
-            android:id="@+id/TVmenuPrice" />
+            android:id="@+id/TVmenuPrice"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Preparation time"
-            android:id="@+id/TVmenuPreparation" />
+            android:id="@+id/TVmenuPreparation"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"/>
     </LinearLayout>
 
 </LinearLayout>
