@@ -49,6 +49,8 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             }
             is.close();
             jsonString = sb.toString();
+            Log.d("MyDebug","jsonString" + jsonString);
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -58,6 +60,10 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
 
     protected void onPostExecute(String result) {
         try {
+            if(jsonString.compareTo("null") != 0){
+                Log.e("MyDebug","Crash ! something broken in DB");
+                return;
+            }
             JSONArray jsonArray = new JSONArray(jsonString);
             Message msg = new Message();
             Bundle bundle = new Bundle();

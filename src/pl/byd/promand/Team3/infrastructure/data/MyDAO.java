@@ -167,11 +167,11 @@ public class MyDAO {
     }
 
     public MenuItem getMenuItem(int id){
+        for(ArrayList<MenuItem> mTab  :menuItem)
+            for(MenuItem x : mTab)
+                if(x.menuItemId == id)
+                    return x;
 
-        for(int i=0;i < menuItem.size();i++)
-            for(int j = 0;i < menuItem.get(i).size();j++)
-                if (menuItem.get(i).get(j).menuItemId == id )
-                    return menuItem.get(i).get(j);
 
         return null;
     }
