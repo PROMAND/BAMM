@@ -5,15 +5,21 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.GlobalState;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
+import pl.byd.promand.Team3.infrastructure.order.OrderAdapter;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderActivity extends SherlockActivity {
     private String name;
@@ -21,6 +27,8 @@ public class OrderActivity extends SherlockActivity {
 
     private EditText nameET;
     private EditText phoneNumberET;
+
+    private ListView orderListView;
 
     private TextView numOfSitsTV;
     private TextView textViewTime;
@@ -88,6 +96,10 @@ public class OrderActivity extends SherlockActivity {
         fillFormTV = (TextView) findViewById(R.id.orderTextView);
         selectSitsTV = (TextView) findViewById(R.id.orderTextViewSits);
 
+
+
+        orderListView = (ListView) findViewById(R.id.orderListView);
+
         nameET = (EditText) findViewById(R.id.orderEditTextName);
         phoneNumberET = (EditText) findViewById(R.id.orderEditTextPhoneNumber);
 
@@ -95,6 +107,15 @@ public class OrderActivity extends SherlockActivity {
         numOfSitsTV.setTextSize(TEXT_SIZE);
         fillFormTV.setTextSize(TEXT_SIZE);
         selectSitsTV.setTextSize(TEXT_SIZE);
+
+        ArrayList<Pair<Integer,Integer>> orderedItemList = GlobalState.getInstance().getOrderByRestaurant(restaurant.Restaurant_ID);
+        List<Pair<String, Integer>> objects = new ArrayList<Pair<String, Integer>>();
+        for(int i = 0; i < orderedItemList.size(); i++){
+            objects.add(new Pair<String, Integer>(String.valueOf(orderedItemList.get(i).first), orderedItemList.get(i).second));
+        }
+
+        OrderAdapter adapter = new OrderAdapter(OrderActivity.this, objects);
+        orderListView.setAdapter(adapter);
 
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -136,13 +136,10 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
-        <TextView
-                android:id="@+id/orderReviewTV"
+        <ListView
+                android:id="@+id/orderListView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/orderReview"
-                android:gravity="center_horizontal"
-
                 />
 
     </LinearLayout>

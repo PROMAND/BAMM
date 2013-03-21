@@ -54,7 +54,7 @@ public class GlobalState extends Application {
                     itemArray.add(new Pair<Integer, Integer>(orders.get(i).first,orders.get(i).second));
             }
         }
-        return null;
+        return itemArray;
     }
 
     static public GlobalState getInstance() {
