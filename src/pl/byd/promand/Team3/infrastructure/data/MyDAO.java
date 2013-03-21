@@ -166,6 +166,25 @@ public class MyDAO {
         menuItem.add(itemArray);
     }
 
+    public MenuItem getMenuItem(int id){
+
+        for(int i=0;i < menuItem.size();i++)
+            for(int j = 0;i < menuItem.get(i).size();j++)
+                if (menuItem.get(i).get(j).menuItemId == id )
+                    return menuItem.get(i).get(j);
+
+        return null;
+    }
+
+    public String minutesToTime(int time){
+           String temp;
+
+        if((time % 60 != 0)){
+           // temp =
+        }
+        return "";
+    }
+
     public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
     public ArrayList<ArrayList<MenuItem>> menuItem = new ArrayList<ArrayList<MenuItem>>();
 

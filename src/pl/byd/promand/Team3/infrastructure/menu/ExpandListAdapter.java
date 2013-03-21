@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 
 import pl.byd.promand.Team3.R;
-import pl.byd.promand.Team3.infrastructure.data.GlobalState;
-import pl.byd.promand.Team3.infrastructure.data.MenuItem;
+import pl.byd.promand.Team3.infrastructure.data.*;
 
 import java.util.ArrayList;
 
@@ -50,7 +49,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             view = infalInflater.inflate(R.layout.menu_list_child, null);
         }
 
-
+        MenuItem menuItem = MyDAO.getInstance().getMenuItem(child.getId());
         TextView tv = (TextView) view.findViewById(R.id.textViewChild);
 
         tv.setText(child.getName());
@@ -67,6 +66,15 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         TextView count = (TextView) view.findViewById(R.id.TVcountOrder);
         count.setText("" + GlobalState.getInstance().getOrder(child.getId()));
+
+        ImageView itemImg = (ImageView)view.findViewById(R.id.IMGmenuItem);
+        if(itemImg == null){
+            Log.d("MyDebug","Itemimg jest nullem");
+        }
+
+        Log.d("MyDebug","Path"+menuItem.path_to_img);
+        itemImg.setImageBitmap(ImgMgr.getInstance().getBitmap(menuItem.path_to_img));
+        itemImg.setVisibility(View.GONE);
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +96,14 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        itemDesc.setText(child.description);
+        itemDesc.setText(menuItem.description);
         itemIng.setText(child.ingredients);
+        TextView itemView = (TextView) view.findViewById(R.id.TVmenuPrice);
+        itemIng.setText(Double.valueOf(child.price).toString());
+        itemView.setVisibility(View.GONE);
+        itemView = (TextView) view.findViewById(R.id.TVmenuPreparation);
+        itemView.setVisibility(View.GONE);
+
 
         itemDesc.setVisibility(View.GONE);
         itemIng.setVisibility(View.GONE);
@@ -103,10 +117,17 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                 if (child.getCollapsed() == true) {
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.IMGmenuItem).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.TVmenuPrice).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.TVmenuPreparation).setVisibility(View.VISIBLE);
+
                     child.setCollapsed(false);
                 } else {
                     copyView.findViewById(R.id.TVmenuFoodDescription).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuFoodIngredients).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.IMGmenuItem).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.TVmenuPrice).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.TVmenuPreparation).setVisibility(View.GONE);
                     child.setCollapsed(true);
                 }
 

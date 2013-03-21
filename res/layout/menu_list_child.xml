@@ -10,7 +10,7 @@
             android:layout_height="fill_parent">
         <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:text="New Text"
                 android:id="@+id/textViewChild"
                 android:layout_weight="1" />
@@ -37,14 +37,38 @@
                 android:src="@drawable/plus"
                 android:gravity="right"/>
     </LinearLayout>
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IMGmenuItem" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
             android:id="@+id/TVmenuFoodDescription"/>
-    <TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="some text"
+            android:text="Ingridients"
             android:id="@+id/TVmenuFoodIngredients"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="price"
+            android:id="@+id/TVmenuPrice" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preparation time"
+            android:id="@+id/TVmenuPreparation" />
+    </LinearLayout>
+
 </LinearLayout>
