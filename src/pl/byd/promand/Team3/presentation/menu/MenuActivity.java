@@ -76,7 +76,7 @@ public class MenuActivity extends SherlockActivity {
                     ExpAdapter = new ExpandListAdapter(MenuActivity.this, ExpListItems);
                     ExpandList.setAdapter(ExpAdapter);
                 }
-                if (msg.getData().getString("type").compareTo("img_download") == 0){
+                if (msg.getData().getString("type").compareTo("img_download_menu") == 0){
                     ExpAdapter.notifyDataSetChanged();
                 }
             }

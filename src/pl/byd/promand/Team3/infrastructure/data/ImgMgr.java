@@ -105,10 +105,17 @@ public class ImgMgr {
         protected void onPostExecute(String string){
             Message msg = new Message();
             Bundle bundle = new Bundle();
-            bundle.putString("type", "img_download");
+            bundle.putString("type", "img_download_menu");
             msg.setData(bundle);
-            GlobalState.getInstance().mainHandler.sendMessage(msg);
-            GlobalState.getInstance().menuHandler.sendMessage(msg);
+            if(GlobalState.getInstance().mainHandler != null)
+                GlobalState.getInstance().mainHandler.sendMessage(msg);
+
+            msg = new Message();
+            bundle = new Bundle();
+            bundle.putString("type", "img_download_menu");
+            msg.setData(bundle);
+            if (GlobalState.getInstance().menuHandler != null)
+                GlobalState.getInstance().menuHandler.sendMessage(msg);
         }
     }
 
