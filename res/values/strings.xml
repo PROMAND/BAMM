@@ -20,7 +20,8 @@
     <string name="des">Description</string>
     <string name="con">Contacts</string>
     <string name="cellnr">Cell Number: </string>
-    <string name="check_internet">Please check Internet connection</string>
+    <string name="check_internet">Check Internet connection</string>
+    <string name="close">Close</string>
 
     <item type="id" name="TAG_VIEW"/>
 

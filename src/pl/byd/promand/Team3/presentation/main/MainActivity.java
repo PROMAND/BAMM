@@ -1,6 +1,7 @@
 package pl.byd.promand.Team3.presentation.main;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -70,7 +71,8 @@ public class MainActivity extends SherlockActivity {
 
         boolean isInternetAvailable = checkForNetworkConnection(MainActivity.this);
         if(!isInternetAvailable){
-            finish();
+            Dialog dialog = new NoNetworkDialog(MainActivity.this);
+            dialog.show();
         }
 
         // Change app action bar title
