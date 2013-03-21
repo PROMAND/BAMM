@@ -64,6 +64,8 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         TextView descriptionit = (TextView)view.findViewById(R.id.descriptionit);
         TextView ingradientit = (TextView)view.findViewById(R.id.ingradientit);
         TextView priceit = (TextView)view.findViewById(R.id.priceit);
+        TextView priceititit = (TextView)view.findViewById(R.id.priceititit);
+        TextView deliveryit = (TextView)view.findViewById(R.id.deliveryit);
 
         //set data
         tv.setTag(child.getId());
@@ -87,6 +89,8 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             descriptionit.setVisibility(View.GONE);
             ingradientit.setVisibility(View.GONE);
             priceit.setVisibility(View.GONE);
+            priceititit.setVisibility(View.GONE);
+            deliveryit.setVisibility(View.GONE);
         } else {
             itemDesc.setVisibility(View.VISIBLE);
             itemIng.setVisibility(View.VISIBLE);
@@ -96,6 +100,8 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             descriptionit.setVisibility(View.VISIBLE);
             ingradientit.setVisibility(View.VISIBLE);
             priceit.setVisibility(View.VISIBLE);
+            priceititit.setVisibility(View.VISIBLE);
+            deliveryit.setVisibility(View.VISIBLE);
         }
 
         plus.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +139,8 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     copyView.findViewById(R.id.descriptionit).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.ingradientit).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.priceit).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.priceititit).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.deliveryit).setVisibility(View.VISIBLE);
 
                     child.setCollapsed(false);
                 } else {
@@ -144,6 +152,8 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     copyView.findViewById(R.id.descriptionit).setVisibility(View.GONE);
                     copyView.findViewById(R.id.ingradientit).setVisibility(View.GONE);
                     copyView.findViewById(R.id.priceit).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.priceititit).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.deliveryit).setVisibility(View.GONE);
 
                     child.setCollapsed(true);
                 }

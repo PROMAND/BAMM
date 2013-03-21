@@ -86,9 +86,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/priceandtime"
-                  android:textStyle="bold"
-                  android:paddingLeft="5dip"
-                  android:paddingRight="5dip"/>
+                  android:textStyle="bold"/>
 
         <LinearLayout
                 android:orientation="horizontal"
@@ -111,27 +109,31 @@
                     android:paddingLeft="5dip"
                     android:paddingRight="5dip"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            <TextView android:id="@+id/deliveryit"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/delivery"
+                      android:textStyle="bold"
+                      android:paddingLeft="5dip"
+                      android:paddingRight="5dip"/>
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cell number"
-                    android:id="@+id/TVmainCellNr"
+                    android:text="Preparation time"
+                    android:id="@+id/TVmenuPreparation"
                     android:paddingLeft="5dip"
                     android:paddingRight="5dip"/>
 
         </LinearLayout>
 
-
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preparation time"
-            android:id="@+id/TVmenuPreparation"
-            android:paddingLeft="5dip"
-            android:paddingRight="5dip"/>
     </LinearLayout>
 
 </LinearLayout>
