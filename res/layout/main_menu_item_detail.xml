@@ -4,38 +4,51 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
+
+    <ImageView android:id="@+id/mainMenuImg"
+               android:src="@drawable/abs__ab_bottom_solid_dark_holo"
+               android:layout_height="190dp"
+               android:layout_width="300dp"
+               android:scaleType="fitXY"
+               android:layout_gravity="left"
+               android:background="#ffffff"
+               android:padding="1dp"/>
+
+    <TextView android:id="@+id/descriptionit"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:text="@string/des"
+              android:textStyle="bold"/>
+
     <TextView android:id="@+id/textViewItemDetails"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:text="Groups"
-              android:gravity="center_vertical|right"
+              android:gravity="left"
               android:paddingLeft="5dip"
               android:paddingRight="5dip"
-              android:textStyle="bold"
               android:textSize="17dip"/>
 
-    <ImageView android:id="@+id/mainMenuImg"
-               android:src="@drawable/abs__ab_bottom_solid_dark_holo"
-               android:layout_height="fill_parent"
-               android:layout_width="fill_parent"
-               android:layout_marginLeft="40dip"/>
+    <TextView android:id="@+id/contactit"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:text="@string/con"
+              android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cell number"
-        android:id="@+id/TVmainCellNr" />
+        android:id="@+id/TVmainCellNr"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="e-mail"
-        android:id="@+id/TVmainEmail" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sits_cur/Sits_max"
-        android:id="@+id/TVmainSitsMaxCurr" />
+        android:id="@+id/TVmainEmail"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"/>
 </LinearLayout>
 

@@ -17,6 +17,9 @@
     <string name="order">Order</string>
     <string name="maps">Location</string>
     <string name="table">View reservation</string>
+    <string name="des">Description</string>
+    <string name="con">Contacts</string>
+    <string name="cellnr">Cell Number: </string>
 
     <item type="id" name="TAG_VIEW"/>
 
