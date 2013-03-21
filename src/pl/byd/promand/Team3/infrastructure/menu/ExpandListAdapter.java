@@ -98,15 +98,16 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         itemDesc.setText(menuItem.description);
         itemIng.setText(child.ingredients);
-        TextView itemView = (TextView) view.findViewById(R.id.TVmenuPrice);
-        itemIng.setText(Double.valueOf(child.price).toString());
-        itemView.setVisibility(View.GONE);
-        itemView = (TextView) view.findViewById(R.id.TVmenuPreparation);
-        itemView.setVisibility(View.GONE);
-
-
         itemDesc.setVisibility(View.GONE);
         itemIng.setVisibility(View.GONE);
+
+        TextView itemView = (TextView) view.findViewById(R.id.TVmenuPrice);
+        itemView.setText(Double.valueOf(child.price).toString());
+        itemView.setVisibility(View.GONE);
+
+        itemView = (TextView) view.findViewById(R.id.TVmenuPreparation);
+        itemView.setText(child.getPreparationTime());
+        itemView.setVisibility(View.GONE);
 
         //TODO: null pointer when activity is gone ?
         final View copyView = view;

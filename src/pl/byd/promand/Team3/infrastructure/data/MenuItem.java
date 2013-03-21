@@ -9,7 +9,22 @@ public class MenuItem {
     public String ingredients;
     public String name;
     public String path_to_img;
+    public int preparationTime;
     private boolean collapsed = true;
+
+    public String getPreparationTime(){
+        int t = preparationTime;
+        String temp;
+        if(t == 0)
+            return "none";
+
+        if(((int)(t/60) != 0)){
+            temp = Integer.valueOf(t).toString() + "min";
+        } else {
+            temp = Integer.valueOf(t/60) + "h " + Integer.valueOf(t % 60).toString()+"min";
+        }
+        return "";
+    }
 
     public String getName() {
         return name;
@@ -45,6 +60,7 @@ public class MenuItem {
         this.description = temp.description;
         this.collapsed = temp.collapsed;
         this.path_to_img = temp.path_to_img;
+        this.preparationTime = temp.preparationTime;
     }
 
     public MenuItem() {

@@ -108,6 +108,7 @@ public class ImgMgr {
             bundle.putString("type", "img_download");
             msg.setData(bundle);
             GlobalState.getInstance().mainHandler.sendMessage(msg);
+            GlobalState.getInstance().menuHandler.sendMessage(msg);
         }
     }
 

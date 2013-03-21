@@ -125,6 +125,7 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             temp.name = jo.getString("Name");
             temp.path_to_img = jo.getString("Path_to_img");
             temp.price = jo.getDouble("Price");
+            temp.preparationTime = jo.getInt("Preparation_time");
 
             menuItemArray.add(temp);
         }

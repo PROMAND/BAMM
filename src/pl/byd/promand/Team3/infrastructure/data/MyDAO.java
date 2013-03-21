@@ -178,9 +178,13 @@ public class MyDAO {
 
     public String minutesToTime(int time){
            String temp;
+        if(time == 0)
+            return "none";
 
-        if((time % 60 != 0)){
-           // temp =
+        if(((int)(time/60) != 0)){
+            temp = Integer.valueOf(time).toString() + "min";
+        } else {
+            temp = Integer.valueOf(time/60) + "h " + Integer.valueOf(time % 60).toString()+"min";
         }
         return "";
     }
