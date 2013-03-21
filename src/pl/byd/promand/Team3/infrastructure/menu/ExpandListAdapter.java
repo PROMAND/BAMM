@@ -61,6 +61,9 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         ImageView itemImg = (ImageView)view.findViewById(R.id.IMGmenuItem);
         ImageButton plus = (ImageButton)view.findViewById(R.id.orderBtnPlus);
         ImageButton minus = (ImageButton)view.findViewById(R.id.orderBtnMinus);
+        TextView descriptionit = (TextView)view.findViewById(R.id.descriptionit);
+        TextView ingradientit = (TextView)view.findViewById(R.id.ingradientit);
+        TextView priceit = (TextView)view.findViewById(R.id.priceit);
 
         //set data
         tv.setTag(child.getId());
@@ -80,12 +83,18 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
             itemPrice.setVisibility(View.GONE);
             itemPrep.setVisibility(View.GONE);
             itemImg.setVisibility(View.GONE);
+            descriptionit.setVisibility(View.GONE);
+            ingradientit.setVisibility(View.GONE);
+            priceit.setVisibility(View.GONE);
         } else {
             itemDesc.setVisibility(View.VISIBLE);
             itemIng.setVisibility(View.VISIBLE);
             itemPrice.setVisibility(View.VISIBLE);
             itemPrep.setVisibility(View.VISIBLE);
             itemImg.setVisibility(View.VISIBLE);
+            descriptionit.setVisibility(View.VISIBLE);
+            ingradientit.setVisibility(View.VISIBLE);
+            priceit.setVisibility(View.VISIBLE);
         }
 
         plus.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +129,9 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     copyView.findViewById(R.id.IMGmenuItem).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.TVmenuPrice).setVisibility(View.VISIBLE);
                     copyView.findViewById(R.id.TVmenuPreparation).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.descriptionit).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.ingradientit).setVisibility(View.VISIBLE);
+                    copyView.findViewById(R.id.priceit).setVisibility(View.VISIBLE);
 
                     child.setCollapsed(false);
                 } else {
@@ -128,6 +140,9 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
                     copyView.findViewById(R.id.IMGmenuItem).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuPrice).setVisibility(View.GONE);
                     copyView.findViewById(R.id.TVmenuPreparation).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.descriptionit).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.ingradientit).setVisibility(View.GONE);
+                    copyView.findViewById(R.id.priceit).setVisibility(View.GONE);
 
                     child.setCollapsed(true);
                 }
