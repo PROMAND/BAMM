@@ -60,7 +60,7 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
 
     protected void onPostExecute(String result) {
         try {
-            if(jsonString.compareTo("null") != 0){
+            if(jsonString.compareTo("null") == 0){
                 Log.e("MyDebug","Crash ! something broken in DB");
                 return;
             }
