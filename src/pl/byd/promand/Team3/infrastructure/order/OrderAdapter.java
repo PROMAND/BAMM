@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import pl.byd.promand.Team3.R;
+import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends ArrayAdapter {
@@ -28,11 +30,12 @@ public class OrderAdapter extends ArrayAdapter {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.order_listview_layout, null);
             TextView itemId = (TextView) convertView.findViewById(R.id.orderItemID_TV);
-            itemId.setText(objects.get(position).first);
+
+            ArrayList<MenuItem> menuItemArray = MyDAO.getInstance().getMenuItemArray(1);
+            //String name = menuItemArray.get(1).getName();
+
+            itemId.setText(menuItemArray.get(Integer.valueOf(objects.get(position).first)).getName());
             TextView itemQuantity = (TextView) convertView.findViewById(R.id.orderItemQuantity_TV);
-
-            //MyDAO.getInstance().getMenuItemArray()
-
             itemQuantity.setText(String.valueOf(objects.get(position).second));
             itemQuantity.setPadding(10, 0, 0, 0);
 
