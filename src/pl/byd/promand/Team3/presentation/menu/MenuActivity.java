@@ -62,8 +62,9 @@ public class MenuActivity extends SherlockActivity {
 
         int resId = getIntent().getExtras().getInt("RestaurantId");
         restaurant = MyDAO.getInstance().getRestaurant(resId);
-        MyDAO.getInstance().downloadMenuItems(resId);
         MyDAO.getInstance().downloadMenu();
+        MyDAO.getInstance().downloadMenuItems(resId);
+
 
         GlobalState.getInstance().menuHandler = new Handler() {
             @Override
