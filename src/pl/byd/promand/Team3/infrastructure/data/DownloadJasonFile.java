@@ -12,9 +12,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,11 +73,17 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
                 bundle.putString("type", "menu_item");
                 msg.setData(bundle);
                 GlobalState.getInstance().menuHandler.sendMessage(msg);
-            } else if (result.equals("menu")){
+            } else if (result.equals("menu")) {
                 saveMenuCategoryItemData(jsonArray);
                 bundle.putString("type", "menu");
                 msg.setData(bundle);
                 GlobalState.getInstance().mainHandler.sendMessage(msg);
+            } else if (result.equals("customer")){
+                saveCustomerData(jsonArray);
+            } else if (result.equals("reservation")){
+                saveCustomerData(jsonArray);
+            } else if (result.equals("restaurant_time")){
+                saveCustomerData(jsonArray);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,6 +145,71 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             menuCategoryList.add(temp);
         }
         MyDAO.getInstance().setMenuList(menuCategoryList);
+    }
+
+    private void saveCustomerData(JSONArray jsonArray) throws JSONException {
+        ArrayList<Customer> customerArrayList = new ArrayList<Customer>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jo = jsonArray.getJSONObject(i);
+            Customer customer = new Customer();
+
+            customer.setCustomerID(jo.getInt("Customer_ID"));
+            customer.setFirstName(jo.getString("First_name"));
+            customer.setLastName(jo.getString("Last_name"));
+            customer.setPhoneNumber(jo.getString("Phone_number"));
+            customer.setEmail(jo.getString("Email"));
+
+            customerArrayList.add(customer);
+        }
+        MyDAO.getInstance().setCustomerArrayList(customerArrayList);
+    }
+
+    private void saveReservationData(JSONArray jsonArray) throws JSONException {
+        ArrayList<Reservation> reservationArrayList = new ArrayList<Reservation>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jo = jsonArray.getJSONObject(i);
+            Reservation reservation = new Reservation();
+
+            reservation.setReservationId(jo.getInt("Reservation_ID"));
+            reservation.setRestaurantId(jo.getInt("Restaurant_ID"));
+            reservation.setCustomerId(jo.getInt("Customer_ID"));
+            reservation.setSitsOrdered(jo.getInt("Seats_ordered"));
+
+            try {
+                String reservationPlaced = jo.getString("Reservation_placed");
+                reservation.setReservationPlaced(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(reservationPlaced));
+                String reservationTime = jo.getString("Reservation_time");
+                reservation.setReservationTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(reservationTime));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            reservationArrayList.add(reservation);
+        }
+        MyDAO.getInstance().setReservationArrayList(reservationArrayList);
+    }
+
+    private void saveRestaurantTimeData(JSONArray jsonArray) throws JSONException {
+        ArrayList<RestaurantTime> restaurantTimeArrayList = new ArrayList<RestaurantTime>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jo = jsonArray.getJSONObject(i);
+            RestaurantTime restaurantTime = new RestaurantTime();
+
+            restaurantTime.setRestaurantTimeId(jo.getInt("Restaurant_time_ID"));
+            restaurantTime.setWeekDay(jo.getInt("Weekday"));
+            restaurantTime.setRestaurantId(jo.getInt("Restaurant_ID"));
+
+            try {
+                String openFrom = jo.getString("Open_from");
+                restaurantTime.setOpenFrom(new SimpleDateFormat("HH:mm:ss").parse(openFrom));
+                String openUntil = jo.getString("Open_until");
+                restaurantTime.setOpenUntil(new SimpleDateFormat("HH:mm:ss").parse(openUntil));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            restaurantTimeArrayList.add(restaurantTime);
+        }
+        MyDAO.getInstance().setRestaurantTimes(restaurantTimeArrayList);
     }
 
     public String jsonString;

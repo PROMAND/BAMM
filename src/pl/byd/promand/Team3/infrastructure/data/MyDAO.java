@@ -10,7 +10,48 @@ public class MyDAO {
     /**
      * ******************************
      */
+    public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
+    public ArrayList<ArrayList<MenuItem>> menuItem = new ArrayList<ArrayList<MenuItem>>();
+
+    public String file;
+
     private ArrayList<MenuCategory> menuList = new ArrayList<MenuCategory>();
+    private ArrayList<Customer> customerArrayList = new ArrayList<Customer>();
+    private ArrayList<Reservation> reservationArrayList = new ArrayList<Reservation>();
+    private ArrayList<RestaurantTime> restaurantTimes = new ArrayList<RestaurantTime>();
+
+    public ArrayList<Customer> getCustomerArrayList() {
+        if (customerArrayList != null) {
+            return customerArrayList;
+        }
+        return new ArrayList<Customer>();
+    }
+
+    public void setCustomerArrayList(ArrayList<Customer> customerArrayList) {
+        this.customerArrayList = customerArrayList;
+    }
+
+    public ArrayList<Reservation> getReservationArrayList() {
+        if (reservationArrayList != null) {
+            return reservationArrayList;
+        }
+        return new ArrayList<Reservation>();
+    }
+
+    public void setReservationArrayList(ArrayList<Reservation> reservationArrayList) {
+        this.reservationArrayList = reservationArrayList;
+    }
+
+    public ArrayList<RestaurantTime> getRestaurantTimes() {
+        if (restaurantTimes != null) {
+            return restaurantTimes;
+        }
+        return new ArrayList<RestaurantTime>();
+    }
+
+    public void setRestaurantTimes(ArrayList<RestaurantTime> restaurantTimes) {
+        this.restaurantTimes = restaurantTimes;
+    }
 
     public ArrayList<MenuCategory> getMenuList() {
         if (menuList != null) {
@@ -29,6 +70,14 @@ public class MyDAO {
 
     public int getNewReservationId() {
         return ++currentReservationId;
+    }
+
+
+    public ArrayList<Restaurant> getRestaurantArray() {
+        if (!restaurantArray.isEmpty())
+            return restaurantArray;
+
+        return null;
     }
 
     public Order getOrder(int restaurantId) {
@@ -85,12 +134,38 @@ public class MyDAO {
         down.execute("menu");
     }
 
-    public ArrayList<Restaurant> getRestaurantArray() {
-        if (!restaurantArray.isEmpty())
-            return restaurantArray;
+    public void downloadCustomer() {
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("customer");
+    }
 
+    public void downloadOrders() {
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("orders");
+    }
+
+    public void downloadReservation() {
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("reservation");
+    }
+
+    public void downloadRestaurantTime() {
+        DownloadJasonFile down = new DownloadJasonFile();
+        down.execute("restaurant_time");
+    }
+
+    public Customer getCustomer(){
         return null;
     }
+
+    public Reservation getReservation(){
+        return null;
+    }
+
+    public RestaurantTime getRestaurantTime(){
+        return null;
+    }
+
 
     public Restaurant getRestaurant(int Restaurant_ID) {
         for (int i = 0; i < restaurantArray.size(); i++) {
@@ -134,9 +209,4 @@ public class MyDAO {
         }
         menuItem.add(itemArray);
     }
-
-    public ArrayList<Restaurant> restaurantArray = new ArrayList<Restaurant>();
-    public ArrayList<ArrayList<MenuItem>> menuItem = new ArrayList<ArrayList<MenuItem>>();
-
-    public String file;
 }
