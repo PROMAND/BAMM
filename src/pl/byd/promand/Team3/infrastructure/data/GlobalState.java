@@ -47,8 +47,6 @@ public class GlobalState extends Application {
     }
 
     static public GlobalState getInstance() {
-
-
         return instance;
     }
 
