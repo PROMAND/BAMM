@@ -57,6 +57,20 @@ public class MyDAO {
         this.reservationArrayList = reservationArrayList;
     }
 
+    public ArrayList<RestaurantTime> getRestaurantTimes() {
+        if (restaurantTimes != null) {
+            return restaurantTimes;
+        }
+        return new ArrayList<RestaurantTime>();
+    }
+
+    public ArrayList<Customer> getCustomerArrayList() {
+        if (customerArrayList != null) {
+            return customerArrayList;
+        }
+        return new ArrayList<Customer>();
+    }
+
     public void setCustomerArrayList(ArrayList<Customer> customerArrayList) {
         this.customerArrayList = customerArrayList;
     }
