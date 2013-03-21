@@ -39,6 +39,7 @@ public class MenuActivity extends SherlockActivity {
             case R.id.cart:
                 Intent order = new Intent(this, OrderActivity.class);
                 order.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                order.putExtra("RestaurantId",(Integer)restaurant.Restaurant_ID);
                 startActivity(order);
                 return true;
             case R.id.location:

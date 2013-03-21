@@ -119,9 +119,6 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         textView = (TextView) convertView.findViewById(R.id.TVmainEmail);
         textView.setText(restaurant.Contact_email);
 
-        textView = (TextView) convertView.findViewById(R.id.TVmainSitsMaxCurr);
-        textView.setText(restaurant.Sits_current + "/" + restaurant.Sits_max);
-
         return convertView;
     }
 
