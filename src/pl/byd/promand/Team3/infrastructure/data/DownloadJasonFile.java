@@ -81,9 +81,9 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             } else if (result.equals("customer")){
                 saveCustomerData(jsonArray);
             } else if (result.equals("reservation")){
-                saveCustomerData(jsonArray);
+                saveReservationData(jsonArray);
             } else if (result.equals("restaurant_time")){
-                saveCustomerData(jsonArray);
+                saveRestaurantTimeData(jsonArray);
             }
         } catch (Exception e) {
             e.printStackTrace();
