@@ -19,5 +19,23 @@
                android:layout_height="fill_parent"
                android:layout_width="fill_parent"
                android:layout_marginLeft="40dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cell number"
+        android:id="@+id/TVmainCellNr" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e-mail"
+        android:id="@+id/TVmainEmail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sits_cur/Sits_max"
+        android:id="@+id/TVmainSitsMaxCurr" />
 </LinearLayout>
 

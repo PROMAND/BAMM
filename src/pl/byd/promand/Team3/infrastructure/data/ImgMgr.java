@@ -79,11 +79,8 @@ public class ImgMgr {
                 File f = new File(dirName);
                 f.mkdirs();
 
-
                 dirName = dirName + "/";
                 File file = new File(dirName + fileName) ;
-                if (file.exists()){
-                }
 
                 URL url = new URL("http://promand.xaa.pl/server/img/" +sUrl[0]);
                 URLConnection connection = url.openConnection();

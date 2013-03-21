@@ -86,6 +86,11 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textView = (TextView) convertView.findViewById(R.id.TVmainGroup);
         textView.setText(group);
 
+        Restaurant restaurant = MyDAO.getInstance().getRestaurant(getIdGroup(groupPosition));
+
+        textView = (TextView) convertView.findViewById(R.id.TVmainShortDesc);
+        textView.setText(restaurant.Desc_short);
+
         return convertView;
     }
 
@@ -98,13 +103,25 @@ public class MainExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.main_menu_item_detail, null);
         }
 
-        TextView textView = (TextView) convertView.findViewById(R.id.textViewItemDetails);
-        textView.setText(child);
-        convertView.setTag(R.id.TAG_VIEW, getIdGroup(groupPosition));
-
         Restaurant restaurant = MyDAO.getInstance().getRestaurant(getIdGroup(groupPosition));
         ImageView imgView = (ImageView)convertView.findViewById(R.id.mainMenuImg);
         imgView.setImageBitmap(ImgMgr.getInstance().getBitmap(restaurant.Path_to_img));
+
+        TextView textView = (TextView) convertView.findViewById(R.id.textViewItemDetails);
+        textView.setText(restaurant.Desc_long);
+        convertView.setTag(R.id.TAG_VIEW, getIdGroup(groupPosition));
+
+
+
+        textView = (TextView) convertView.findViewById(R.id.TVmainCellNr);
+        textView.setText(restaurant.Contact_number);
+
+        textView = (TextView) convertView.findViewById(R.id.TVmainEmail);
+        textView.setText(restaurant.Contact_email);
+
+        textView = (TextView) convertView.findViewById(R.id.TVmainSitsMaxCurr);
+        textView.setText(restaurant.Sits_current + "/" + restaurant.Sits_max);
+
         return convertView;
     }
 
