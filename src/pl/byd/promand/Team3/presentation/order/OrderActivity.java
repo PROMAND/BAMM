@@ -168,6 +168,12 @@ public class OrderActivity extends SherlockActivity {
                 String mailText = "Name: " + name + " Phone: " + phoneNumber + " Order date: " + textViewDate.getText()
                         + " Order time: " + textViewTime.getText() + " Number of sits: " + numOfSitsTV.getText();
 
+
+                for(Pair<Integer,Integer> i : GlobalState.getInstance().getOrderByRestaurant(restaurant.Restaurant_ID)){
+                    mailText = mailText + "\n Name: " + MyDAO.getInstance().getMenuItem(i.first).getName() +
+                            " Quantity: " + i.second;
+                }
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{restaurant.Contact_email});
