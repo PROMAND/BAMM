@@ -2,20 +2,25 @@ package pl.byd.promand.Team3.presentation.order;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
 import pl.byd.promand.Team3.R;
 import pl.byd.promand.Team3.infrastructure.data.GlobalState;
+import pl.byd.promand.Team3.infrastructure.data.MenuItem;
 import pl.byd.promand.Team3.infrastructure.data.MyDAO;
 import pl.byd.promand.Team3.infrastructure.data.Restaurant;
-import pl.byd.promand.Team3.infrastructure.order.OrderAdapter;
+//import pl.byd.promand.Team3.infrastructure.order.OrderAdapter;
 import pl.byd.promand.Team3.presentation.main.MainActivity;
 
 import java.util.ArrayList;
@@ -80,9 +85,13 @@ public class OrderActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
         // Change app action bar title
+
         getSupportActionBar().setTitle("RestoPesto :Order");
+
         int resId = getIntent().getExtras().getInt("RestaurantId");
         restaurant = MyDAO.getInstance().getRestaurant(resId);
+
+        MyDAO.getInstance().getMenuItemArray(restaurant.Restaurant_ID);
 
         confirmButton = (Button) findViewById(R.id.orderConfirmButton);
         datePickButton = (Button) findViewById(R.id.btnDatePicker);
@@ -96,8 +105,6 @@ public class OrderActivity extends SherlockActivity {
         fillFormTV = (TextView) findViewById(R.id.orderTextView);
         selectSitsTV = (TextView) findViewById(R.id.orderTextViewSits);
 
-
-
         orderListView = (ListView) findViewById(R.id.orderListView);
 
         nameET = (EditText) findViewById(R.id.orderEditTextName);
@@ -109,12 +116,8 @@ public class OrderActivity extends SherlockActivity {
         selectSitsTV.setTextSize(TEXT_SIZE);
 
         ArrayList<Pair<Integer,Integer>> orderedItemList = GlobalState.getInstance().getOrderByRestaurant(restaurant.Restaurant_ID);
-        List<Pair<String, Integer>> objects = new ArrayList<Pair<String, Integer>>();
-        for(int i = 0; i < orderedItemList.size(); i++){
-            objects.add(new Pair<String, Integer>(String.valueOf(orderedItemList.get(i).first), orderedItemList.get(i).second));
-        }
 
-        OrderAdapter adapter = new OrderAdapter(OrderActivity.this, objects);
+        OrderAdapter adapter = new OrderAdapter(OrderActivity.this, orderedItemList);
         orderListView.setAdapter(adapter);
 
         btnMinus.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +170,7 @@ public class OrderActivity extends SherlockActivity {
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"tosha123@inbox.lv"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{restaurant.Contact_email});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Table Reservation");
                 intent.putExtra(Intent.EXTRA_TEXT, mailText);
 
@@ -243,5 +246,34 @@ public class OrderActivity extends SherlockActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.order_menu, menu);
         return true;
+    }
+
+    public class OrderAdapter extends ArrayAdapter {
+
+        List<Pair<Integer, Integer>> objects;
+
+        public OrderAdapter(Context context, List<Pair<Integer, Integer>> objects) {
+            super(context, android.R.layout.simple_list_item_1, android.R.id.text1, objects);
+            this.objects = objects;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if(convertView == null){
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.order_listview_layout, null);
+                TextView itemId = (TextView) convertView.findViewById(R.id.orderItemID_TV);
+
+                MenuItem item = MyDAO.getInstance().getMenuItem(objects.get(position).first);
+
+                itemId.setText(item.getName());
+                TextView itemQuantity = (TextView) convertView.findViewById(R.id.orderItemQuantity_TV);
+                itemQuantity.setText(String.valueOf(objects.get(position).second));
+                itemQuantity.setPadding(10, 0, 0, 0);
+
+            }
+            return convertView;
+        }
     }
 }

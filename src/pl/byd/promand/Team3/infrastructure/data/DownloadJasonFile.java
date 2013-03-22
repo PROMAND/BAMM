@@ -49,7 +49,6 @@ public class DownloadJasonFile extends AsyncTask<String, Integer, String> {
             }
             is.close();
             jsonString = sb.toString();
-            Log.d("MyDebug","jsonString" + jsonString);
 
         } catch (Exception e) {
             e.printStackTrace();
