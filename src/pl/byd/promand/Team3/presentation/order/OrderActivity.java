@@ -86,7 +86,7 @@ public class OrderActivity extends SherlockActivity {
         setContentView(R.layout.order);
         // Change app action bar title
 
-        getSupportActionBar().setTitle("RestoPesto :Order");
+        getSupportActionBar().setTitle("RestoPesto: Order");
 
         int resId = getIntent().getExtras().getInt("RestaurantId");
         restaurant = MyDAO.getInstance().getRestaurant(resId);
